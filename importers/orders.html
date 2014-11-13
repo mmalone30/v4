@@ -1,0 +1,185 @@
+<!DOCTYPE html> 
+<html ng-app>
+	<head> 
+		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>ShipSeed</title> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="../js/shipseed.js"></script>
+	</head> 
+	<body ng-controller="ShipSeedCtrl"> 
+		<div class="">
+			<div class="main-header">
+				<h1>
+					<a href=''>ShipSeed</a>
+				</h1>
+				<div class="search">
+					<a href=''><i class="search-icon"></i> Find Brokers</a>
+				</div>
+				<nav class="main-nav">
+					<ul>
+						<li>
+							<a href=''>Orders</a>
+						</li>
+						<li>
+							<a href=''>Messages</a>
+						</li>
+						<li>
+							<a href=''>Documents</a>
+						</li>
+						<li>
+							<a href=''>Johnny</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="main-content">
+				<div class="container">
+					<div class="grid-12 page-title">
+						<h2>Your Orders</h2>
+						<div class="filters">
+							<ul>
+								<li>
+									<a class="active" href=''>All</a>
+								</li>
+								<li>
+									<a href=''>New</a>
+								</li>
+								<li>
+									<a href=''>Filing</a>
+								</li>
+								<li>
+									<a href=''>Loaded on Vessel</a>
+								</li>
+								<li>
+									<a href=''>In Transit</a>
+								</li>
+								<li>
+									<a href=''>Arrived</a>
+								</li>
+								<li>
+									<a href=''>Completed</a>
+								</li>
+							</ul>
+						</div>
+						
+					</div>
+					<div class="grid-12">
+						<div class="order-item">
+							<div class="order-item-header">
+								<div class="item">
+									<h3>Order Date</h3>
+									<p>10/20/2014</p>
+								</div>
+								<div class="item">
+									<h3>Origination Port</h3>
+									<p>Laem Chabang, Thailand</p>
+								</div>
+								<div class="item">
+									<h3>Destination Port</h3>
+									<p>San Pedro, US</p>
+								</div>
+								<div class="item">
+									<h3>Logististics Provider</h3>
+									<p>Pacific Logistics, Inc.</p>
+								</div>
+								<div class="item">
+									<h3>Total</h3>
+									<p>$1,200.00</p>
+								</div>
+								<div class="item">
+									<h3>Order ID</h3>
+									<p>1231321</p>
+								</div>
+							</div>
+							<div class="order-item-content">
+								<div class="status-actions">
+									<h4>
+										New
+										<span class="status-info">Just now</span>
+									</h4>
+									<button class="small button">Edit Order</button>
+									<button class="small button">View Documents</button>
+									<button class="small button">Contact Logistics Provider</button>
+								</div>
+								<div class="order-info">
+									<h4 class="tag food">Food</h4>
+									<div class="containers">
+										<div class="container-item">
+											<img src="../img/20standard.png">
+											<span class="amount">2</span>
+											<h5>20' Standard</h5>
+										</div>
+										<div class="container-item">
+											<img src="../img/40standard.png">
+											<span class="amount">1</span>
+											<h5>40' Standard</h5>
+									</div>
+									</div>
+								</div>
+								<div class="order-info">
+									<span class="subtle-text">Full Container Load, Port-to-Port &middot; 28 days in transit</span>
+								</div>
+								<div class="text-has-icon mts">
+									<i class="attention info-text mrs"></i>
+									<a href='' class="mrs">Enter your shipper info</a> for your logistics provider.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="lightbox one" ng-class='{"open":showBroker}'>
+			<div class="modal">
+				<div class="card">
+					<div class="card-header">
+						<h2>Thanks for booking</h2>
+						<a href='' class="close" ng-click="showBroker=false">&times;</a>
+					</div>
+					<div class="card-content">
+						<div class="grid-12 aligncenter mbl">
+							<h6 class="subtle-text">Your logistics provider for this order is</h6>
+							<h3 class="mbs">Pacific Logistics, Inc.</h3>
+							<button class="small button" ng-click="showBroker=false">View Order</button>
+						</div>
+						<div class="grid-12 well broker-info">
+							<div class="grid-12 aligncenter mbl mtl">
+								<div class="grid-6">
+									<i class="user"></i>
+									<p>Patrick Keen</p>
+								</div>
+								<div class="grid-6">
+									<i class="phone"></i>
+									<p>(888) 222-9999</p>
+								</div>
+							</div>
+							<div class="grid-12 aligncenter">
+								<div class="grid-6">
+									<i class="house"></i>
+									<p>123 Main St., Los Angeles, CA, 92606</p>
+								</div>
+								<div class="grid-6">
+									<i class="email"></i>
+									<p>patrick@pacificlogistics.com</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-content">
+						<h6>Next:</h6>
+						<a href=''>Enter your shipper info</a> for your logistics service provider.
+					</div>
+					<div class="card-content">
+						<button class="button primary">Enter Shipper Info</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

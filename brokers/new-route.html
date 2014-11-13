@@ -1,0 +1,162 @@
+<!DOCTYPE html> 
+<html ng-app>
+	<head> 
+		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>ShipSeed</title> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="../js/shipseed.js"></script>
+	</head> 
+	<body ng-controller="ShipSeedCtrl"> 
+		<div class="">
+			<div class="main-header">
+				<h1>
+					<a href=''>ShipSeed</a>
+				</h1>
+				<div class="search">
+					<div class="grid-12" ng-show="searching=='no'">
+						<a href='results.html' class="info-text">
+							<i class="search-icon"></i>
+							Find Routes
+						</a>
+					</div>
+				
+					
+				</div>
+				<nav class="main-nav">
+					<ul>
+						<li>
+							<a href=''>Orders</a>
+						</li>
+						<li>
+							<a href=''>Routes</a>
+						</li>
+						<li>
+							<a href=''>Messages</a>
+						</li>
+						<li>
+							<a href=''>Documents</a>
+						</li>
+						<li>
+							<a href=''>Mitch</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="main-content">
+				<div class="container small">
+					<div class="grid-12 page-title">
+						<h2>
+							<a href='' class="back-button">&larr; Go Back</a>
+							Create a Full Container Load Route
+						</h2>
+						
+						
+					</div>
+					<div class="grid-12">
+						<div class="card">
+							<div class="card-content">
+								<div class="grid-12 mbl">
+									<div class="grid-3">
+										<label>Origin</label>
+									</div>
+									<div class="grid-9">
+										<div class="typeahead-wrapper">
+											<input type="text" ng-model="originText" placeholder="Port of Origin">
+											<ul class="typeahead-list" ng-hide="!originText || hasOrigin">
+												<li ng-repeat="port in ports | filter:originText | limitTo:8">
+													<a href='' ng-click="originSelected(port)">{{port.name}}</a>
+												</li>
+												<li class="subtle-text" ng-show="(ports | filter:originText).length == 0">
+													I can't find this port.
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="grid-12 mbl">
+									<div class="grid-3">
+										<label>Destination</label>
+									</div>
+									<div class="grid-9">
+										<div class="typeahead-wrapper">
+											<input type="text" ng-model="destinationText" placeholder="Port of Destination">
+											<ul class="typeahead-list" ng-hide="!destinationText || hasDestination">
+												<li ng-repeat="port in ports | filter:destinationText | limitTo:8">
+													<a href='' ng-click="destinationSelected(port)">{{port.name}}</a>
+												</li>
+												<li class="subtle-text" ng-show="(ports | filter:destinationText).length == 0">
+													I can't find this port.
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="grid-12 mbl">
+									<div class="grid-3">
+										<label>Base Price</label>
+									</div>
+									<div class="grid-9">
+										<input type="number">
+									</div>
+								</div>
+								<div class="grid-12 mbl">
+									<div class="grid-3">
+										<label>Delivery Type</label>
+									</div>
+									<div class="grid-9">
+										<div class="grid-12">
+											<div class="checkbox">
+												<input type="radio" name="shipmentDelivered" id="portToPort" ng-model="shipmentDelivered" value="port">
+												<label for="portToPort">Port-to-port</label>
+											</div>
+											<div class="checkbox">
+												<input type="radio" name="shipmentDelivered" id="doorToDoor" ng-model="shipmentDelivered" value="door">
+												<label for="doorToDoor">Door-to-door</label>
+											</div>
+											<div class="well" ng-show="shipmentDelivered=='door'">
+												<div class="input-group">
+													<label>City of Loading</label>
+													<input type="text">
+												</div>
+												<div class="input-group">
+													<label>Final Destination</label>
+													<input type="text">
+												</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="grid-12 mbl">
+									<div class="grid-3">
+										<label>Container Type</label>
+									</div>
+									<div class="grid-9">
+										<select>
+											<option>20' Standard</option>
+											<option>40' Standard</option>
+											<option>40' High Cube</option>
+											<option>45' Standard</option>
+											<option>45' High Cube</option>
+											<option>...</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="card-content">
+								<a href='routes2.html' class="primary button">Save &amp; Continue</a>
+								<button class="button">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

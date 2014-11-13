@@ -1,0 +1,158 @@
+<!DOCTYPE html> 
+<html ng-app>
+	<head> 
+		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>ShipSeed</title> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="../js/shipseed.js"></script>
+	</head> 
+	<body ng-controller="ShipSeedCtrl"> 
+		<div class="">
+			<div class="main-header">
+				<h1>
+					<a href=''>ShipSeed</a>
+				</h1>
+				<div class="search">
+					<div class="grid-12" ng-show="searching=='no'">
+						<a href='results.html' class="info-text">
+							<i class="search-icon"></i>
+							Find Routes
+						</a>
+					</div>
+				
+					
+				</div>
+				<nav class="main-nav">
+					<ul>
+						<li>
+							<a href=''>Orders</a>
+						</li>
+						<li>
+							<a href=''>Routes</a>
+						</li>
+						<li>
+							<a href=''>Messages</a>
+						</li>
+						<li>
+							<a href=''>Documents</a>
+						</li>
+						<li>
+							<a href=''>Mitch</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="main-content">
+				<div class="hide success flash" ng-class='{"close":closeFlash}'>
+					<i class="check"></i> Route Added <a href='' ng-click="closeFlash = !closeFlash">&times;</a>
+				</div>
+				<div class="container">
+					<div class="grid-12 page-title">
+
+						<h2><a href='' class="back-button">&larr; Back to all Routes</a>Laem Chabang, Thailand <i class="move-right mls mrs"></i> San Pedro, US</h2>
+						<div class="filters">
+							
+						</div>
+						
+					</div>
+					<div class="grid-12">
+						<div class="order-item">
+							<div class="order-item-header">
+								
+								<div class="multi-select-drop">
+									<button class="small button">Food</button>
+								</div>
+								<div class="mls multi-select-drop">
+									<button class="small button">Port-to-Port</button>
+								</div>
+							</div>
+							<div class="order-item-content">
+								<div class="hide status-actions">
+									
+									
+								</div>
+								
+								<div class="order-info">
+
+									<div class="containers">
+										<div class="container-item">
+											<img src="../img/20standard.png">
+											<div>$1,200.00</div>
+											<span class="small-text">20' Standard</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/40standard.png">
+											<div>$1,280.00</div>
+											<span class="small-text">40' Standard</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/40highcube.png">
+											<div>$1,320.00</div>
+											<span class="small-text">40' High Cube</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/20standard.png">
+											<div>$1,200.00</div>
+											<span class="small-text">20' Standard</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/40standard.png">
+											<div>$1,280.00</div>
+											<span class="small-text">40' Standard</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/40highcube.png">
+											<div>$1,320.00</div>
+											<span class="small-text">40' High Cube</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/20standard.png">
+											<div>$1,200.00</div>
+											<span class="small-text">20' Standard</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/40standard.png">
+											<div>$1,280.00</div>
+											<span class="small-text">40' Standard</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/40highcube.png">
+											<div>$1,320.00</div>
+											<span class="small-text">40' High Cube</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/20standard.png">
+											<div>$1,200.00</div>
+											<span class="small-text">20' Standard</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/40standard.png">
+											<div>$1,280.00</div>
+											<span class="small-text">40' Standard</span>
+										</div>
+										<div class="container-item">
+											<img src="../img/40highcube.png">
+											<div>$1,320.00</div>
+											<span class="small-text">40' High Cube</span>
+										</div>
+									</div>
+								</div>
+								<div class="order-info">
+									<span class="subtle-text">Full Container Load &middot; 28 days in transit</span>
+								</div>
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

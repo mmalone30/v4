@@ -1,0 +1,1114 @@
+<!DOCTYPE html> 
+<html ng-app>
+	<head> 
+		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>ShipSeed</title> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="../js/shipseed.js"></script>
+	</head> 
+	<body ng-controller="ShipSeedCtrl"> 
+		<div class="">
+			<div class="main-header">
+				<h1>
+					<a href=''>ShipSeed</a>
+				</h1>
+				<div class="search">
+					<div class="grid-12" ng-show="searching=='no'">
+						<a href='find-routes.html' class="info-text">
+							<i class="search-icon"></i>
+							Find Routes
+						</a>
+					</div>
+				
+					
+				</div>
+				<nav class="main-nav">
+					<ul>
+						<li>
+							<a href=''>Orders</a>
+						</li>
+						<li>
+							<a href=''>Routes</a>
+						</li>
+						<li>
+							<a href=''>Messages</a>
+						</li>
+						<li>
+							<a href=''>Documents</a>
+						</li>
+						<li>
+							<a href=''>Mitch</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="main-content">
+				<div class=" success flash" ng-class='{"close":closeFlash}'>
+					<i class="check"></i> Route Added <a href='' ng-click="closeFlash = !closeFlash">&times;</a>
+				</div>
+				<div class="container full">
+					<div class="grid-12 page-title">
+						<h2>Your Routes</h2>
+						<div class="filters">
+							<ul>
+								<li>
+									<a href='' class="" ng-click="showContainerLoadType = 'FCL'" ng-class='{"active":showContainerLoadType == "FCL"}'>Full Container Load</a>
+								</li>
+								<li>
+									<a href='' class="" ng-click="showContainerLoadType = 'LCL'" ng-class='{"active":showContainerLoadType == "LCL"}'>Less than Container Load</a>
+								</li>
+							</ul>
+						</div>
+						
+						<div class="multi-select-drop righty" ng-class='{"open":viewRouteType}'>
+							<button class="button has-icon" ng-click="viewRouteType = !viewRouteType">
+								<i class="plus"></i>
+								New Route
+							</button>
+							<ul>
+								<li>
+									<a href='new-route.html'>Full Container Load Route</a>
+								</li>
+								<li>
+									<a href='new-route-lcl.html'>Less than Container Load Route</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="grid-12">
+						<div class="card scrolly" ng-show="showContainerLoadType =='FCL'">
+							<div class="card-content">
+								<div class="grid-12">
+									<div class="filters mls">
+										<ul>
+											<li>
+												<a href='' class="active">Port-to-Port</a>
+											</li>
+											<li>
+												<a href='' class="">Door-to-Door</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<table class="zebra">
+									<thead>
+										<tr>
+											<th></th>
+											<th>20'</th>
+											<th>40'</th>
+											<th>40' High Cube</th>
+											<th>45'</th>
+											<th>45' High Cube</th>
+											<th>20' Open Top</th>
+											<th>20' Flatrack</th>
+											<th>20' Flatrack Collapsible</th>
+											<th>20' Platform</th>
+											<th>20' Refrigerated</th>
+											<th>20' Bulk</th>
+											<th>20' Tank</th>
+											<th>40' Open Top</th>
+											<th>40' Flatrack</th>
+											<th>40' Flatrack Collapsible</th>
+											<th>40' Platform</th>
+											<th>40' Refrigerated</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="item in myRoutes">
+											<td><strong>{{item.name}}</strong></td>
+											<td ng-class='{"highlight":item.modifier20Saved}'>
+												<span ng-show="item.price20>0">
+													<a href='' ng-click="item.viewModifiers20 = !item.viewModifiers20">{{item.price20 | currency}}</a>
+												</span>
+												<span ng-show="item.price20==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+												
+												<div class="lightbox one" ng-class='{"open":item.viewModifiers20}'>
+													<div class="modal large">
+														<div class="card">
+															<div class="card-header">
+																<h2>{{item.name}} Modifiers</h2>
+																<a href='' class="close" ng-click="item.viewModifiers20 = !item.viewModifiers20">&times;</a>
+															</div>
+															<div class="card-content">
+																<span class="note-text">20' Standard, Full Container Load, Port-to-Port</span>
+															</div>
+															<div class="card-content">
+																<div class="input-group mbl">
+																	<label>Base Price</label>
+																	<input type="number" ng-model="item.price20">
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Ship Date Modifiers</label>
+																	<p class="small-text">This affects container cost for how fast you can load commodities onto each container.</p>
+																	<div class="grid-12 well modifiers">
+																		<div class="grid-3">
+																			14+ Days (Normal)
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="grid-12 well modifiers">
+																		<div class="grid-3">
+																			0-14 Days (Fast)
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="5">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Commodity Modifiers</label>
+																	<p class="small-text">This affects container cost for the commodities that you ship.</p>
+																	<div class="grid-12 well" ng-show="commoditiyModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any commodity modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in commoditiyModifiers">
+																		<div class="grid-3">
+																			<input type="text" placeholder="Enter name of commodity...">
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																		<div class="grid-1 alignright">
+																			<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
+																		</div>
+																	</div>
+																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Container Amount</label>
+																	<p class="small-text">This affects container cost on full container loads only.</p>
+																	<div class="grid-12 well" ng-show="containerAmountModifier.length==0">
+																		<span class="subtle-text">You haven't listed any container amount modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in containerAmountModifier">
+																		<div class="">
+																			<select>
+																				<option>1</option>
+																				<option>2+</option>
+																				<option>3+</option>
+																				<option>4+</option>
+																				<option>5+</option>
+																				<option>6+</option>
+																				<option>7+</option>
+																				<option>8+</option>
+																				<option>9+</option>
+																				<option>10+</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			Containers
+																		</div>
+																		<div class="">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			by
+																		</div>
+																		<div class="grid-2 mrs">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<select>
+																			<option>%</option>
+																			<option>$ (USD)</option>
+																		</select>
+																		<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
+																	</div>
+																	
+																	<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+																</div>
+																<div class="grid-12 input-group">
+																	<label>Hazardous Materials</label>
+																	<p class="small-text">This affects container cost for shipping hazardous materials</p>
+																	<div class="grid-12 well" ng-show="hazardousMaterialModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any hazarous materials modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in hazardousMaterialModifiers">
+																		<div class="">
+																			<select>
+																				<option>Explosives</option>
+																				<option>Gases</option>
+																				<option>Flammable Liquids</option>
+																				<option>Flammable Solids</option>
+																				<option>Oxidizing substances</option>
+																				<option>Toxic and infectious substances</option>
+																				<option>Radioactive material</option>
+																				<option>Corrosive substances</option>
+																				<option>Misc. dangerous substances</option>
+																			</select>
+																		</div>
+																		
+																		<div class="mls mrs">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			by
+																		</div>
+																		<div class="grid-2 mrs">
+																			<input type="number" min="0" value="10">
+																		</div>
+																		<select>
+																			<option>%</option>
+																			<option>$ (USD)</option>
+																		</select>
+																		<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
+																	</div>
+																	
+																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+																</div>
+															</div>
+															<div class="card-content">
+																<button class="primary button" ng-click="item.viewModifiers20 = !item.viewModifiers20">Save Changes
+																</button>
+																<button class="button">Cancel</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</td>
+											<td>
+												<span ng-show="item.price40>0">
+													<a href='' ng-click="item.viewModifiers40 = !item.viewModifiers40">{{item.price40 | currency}}</a>
+												</span>
+												<span ng-show="item.price40==0">
+													<a href='' class="subtle-text" ng-click="item.viewModifiers40 = !item.viewModifiers40"><i class="plus"></i> Add Price</a>
+												</span>
+												<div class="lightbox one" ng-class='{"open":item.viewModifiers40}'>
+													<div class="modal large">
+														<div class="card">
+															<div class="card-header">
+																<h2>{{item.name}} Modifiers</h2>
+																<a href='' class="close" ng-click="item.viewModifiers40 = !item.viewModifiers40">&times;</a>
+															</div>
+															<div class="card-content">
+																<span class="note-text">20' Standard, Full Container Load, Port-to-Port</span>
+															</div>
+															<div class="card-content">
+																<div class="input-group mbl">
+																	<label>Base Price</label>
+																	<input type="number" ng-model="item.price40">
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Ship Date Modifiers</label>
+																	<p class="small-text">This affects container cost for how fast you can load commodities onto each container.</p>
+																	<div class="grid-12 well modifiers">
+																		<div class="grid-3">
+																			14+ Days (Normal)
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="grid-12 well modifiers">
+																		<div class="grid-3">
+																			0-14 Days (Fast)
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="5">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Commodity Modifiers</label>
+																	<p class="small-text">This affects container cost for the commodities that you ship.</p>
+																	<div class="grid-12 well" ng-show="commoditiyModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any commodity modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in commoditiyModifiers">
+																		<div class="grid-3">
+																			<input type="text" placeholder="Enter name of commodity...">
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																		<div class="grid-1 alignright">
+																			<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
+																		</div>
+																	</div>
+																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Container Amount</label>
+																	<p class="small-text">This affects container cost on full container loads only.</p>
+																	<div class="grid-12 well" ng-show="containerAmountModifier.length==0">
+																		<span class="subtle-text">You haven't listed any container amount modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in containerAmountModifier">
+																		<div class="">
+																			<select>
+																				<option>1</option>
+																				<option>2+</option>
+																				<option>3+</option>
+																				<option>4+</option>
+																				<option>5+</option>
+																				<option>6+</option>
+																				<option>7+</option>
+																				<option>8+</option>
+																				<option>9+</option>
+																				<option>10+</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			Containers
+																		</div>
+																		<div class="">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			by
+																		</div>
+																		<div class="grid-2 mrs">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<select>
+																			<option>%</option>
+																			<option>$ (USD)</option>
+																		</select>
+																		<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
+																	</div>
+																	
+																	<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+																</div>
+																<div class="grid-12 input-group">
+																	<label>Hazardous Materials</label>
+																	<p class="small-text">This affects container cost for shipping hazardous materials</p>
+																	<div class="grid-12 well" ng-show="hazardousMaterialModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any hazarous materials modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in hazardousMaterialModifiers">
+																		<div class="">
+																			<select>
+																				<option>Explosives</option>
+																				<option>Gases</option>
+																				<option>Flammable Liquids</option>
+																				<option>Flammable Solids</option>
+																				<option>Oxidizing substances</option>
+																				<option>Toxic and infectious substances</option>
+																				<option>Radioactive material</option>
+																				<option>Corrosive substances</option>
+																				<option>Misc. dangerous substances</option>
+																			</select>
+																		</div>
+																		
+																		<div class="mls mrs">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			by
+																		</div>
+																		<div class="grid-2 mrs">
+																			<input type="number" min="0" value="10">
+																		</div>
+																		<select>
+																			<option>%</option>
+																			<option>$ (USD)</option>
+																		</select>
+																		<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
+																	</div>
+																	
+																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+																</div>
+															</div>
+															<div class="card-content">
+																<button class="primary button" ng-click="item.viewModifiers40 = !item.viewModifiers40">Save Changes
+																</button>
+																<button class="button">Cancel</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</td>
+											<td>
+												<span ng-show="item.price40hc>0"><a href=''>{{item.price40hc | currency}}</a></span>
+												<span ng-show="item.price40hc==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+											</td>
+											<td>
+												<span ng-show="item.price45>0"><a href=''>{{item.price45 | currency}}</a></span>
+												<span ng-show="item.price45==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+											</td>
+											<td>
+												<span ng-show="item.price45hc>0"><a href=''>{{item.price45hc | currency}}</a></span>
+												<span ng-show="item.price45hc==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+											</td>
+										</tr>
+										<tr>
+											<td><a href=''><i class="plus"></i> New Route</a></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="card scrolly" ng-show="showContainerLoadType =='LCL'">
+							<div class="card-content">
+								<div class="grid-12">
+									<div class="filters hide mls">
+										<ul>
+											<li>
+												<a href='' class="active">US Standard</a>
+											</li>
+											<li>
+												<a href='' class="">Metric</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<table class="zebra">
+									<thead>
+										<tr>
+											<th></th>
+											<th>20'</th>
+											<th>40'</th>
+											<th>40' High Cube</th>
+											<th>45'</th>
+											<th>45' High Cube</th>
+											<th>20' Open Top</th>
+											<th>20' Flatrack</th>
+											<th>20' Flatrack Collapsible</th>
+											<th>20' Platform</th>
+											<th>20' Refrigerated</th>
+											<th>20' Bulk</th>
+											<th>20' Tank</th>
+											<th>40' Open Top</th>
+											<th>40' Flatrack</th>
+											<th>40' Flatrack Collapsible</th>
+											<th>40' Platform</th>
+											<th>40' Refrigerated</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="item in myRoutes">
+											<td><strong>{{item.name}}</strong></td>
+											<td ng-class='{"highlight":item.modifier20Saved}'>
+												<span ng-show="item.price20weight>0 && item.price20volume>0">
+													<a href='' ng-click="item.viewModifiers20 = !item.viewModifiers20">{{item.price20weight | currency}}/lb | {{item.price20volume | currency}}/ft<span class="expo">3</span></a>
+												</span>
+												<span ng-show="item.price20weight==0 && item.price20volume==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+												
+												<div class="lightbox one" ng-class='{"open":item.viewModifiers20}'>
+													<div class="modal large">
+														<div class="card">
+															<div class="card-header">
+																<h2>{{item.name}} Modifiers</h2>
+																<a href='' class="close" ng-click="item.viewModifiers20 = !item.viewModifiers20">&times;</a>
+															</div>
+															<div class="card-content">
+																<span class="note-text">20' Standard, Less than Container Load</span>
+															</div>
+															<div class="card-content">
+																<div class="grid-12 input-group mbl">
+																	<div class="grid-6">
+																		<label>Base Price per lb.</label>
+																		<input type="number" ng-model="item.price20weight">
+																	</div>
+																	<div class="grid-6">
+																		<label>Base Price per cu. ft.</label>
+																		<input type="number" ng-model="item.price20volume">
+																	</div>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Ship Date Modifiers</label>
+																	<p class="small-text">This affects container cost for how fast you can load commodities onto each container.</p>
+																	<div class="grid-12 well modifiers">
+																		<div class="grid-3">
+																			14+ Days (Normal)
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="grid-12 well modifiers">
+																		<div class="grid-3">
+																			0-14 Days (Fast)
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="5">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Commodity Modifiers</label>
+																	<p class="small-text">This affects container cost for the commodities that you ship.</p>
+																	<div class="grid-12 well" ng-show="commoditiyModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any commodity modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in commoditiyModifiers">
+																		<div class="grid-3">
+																			<input type="text" placeholder="Enter name of commodity...">
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																		<div class="grid-1 alignright">
+																			<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
+																		</div>
+																	</div>
+																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Container Amount</label>
+																	<p class="small-text">This affects container cost on full container loads only.</p>
+																	<div class="grid-12 well" ng-show="containerAmountModifier.length==0">
+																		<span class="subtle-text">You haven't listed any container amount modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in containerAmountModifier">
+																		<div class="">
+																			<select>
+																				<option>1</option>
+																				<option>2+</option>
+																				<option>3+</option>
+																				<option>4+</option>
+																				<option>5+</option>
+																				<option>6+</option>
+																				<option>7+</option>
+																				<option>8+</option>
+																				<option>9+</option>
+																				<option>10+</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			Containers
+																		</div>
+																		<div class="">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			by
+																		</div>
+																		<div class="grid-2 mrs">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<select>
+																			<option>%</option>
+																			<option>$ (USD)</option>
+																		</select>
+																		<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
+																	</div>
+																	
+																	<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+																</div>
+																<div class="grid-12 input-group">
+																	<label>Hazardous Materials</label>
+																	<p class="small-text">This affects container cost for shipping hazardous materials</p>
+																	<div class="grid-12 well" ng-show="hazardousMaterialModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any hazarous materials modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in hazardousMaterialModifiers">
+																		<div class="">
+																			<select>
+																				<option>Explosives</option>
+																				<option>Gases</option>
+																				<option>Flammable Liquids</option>
+																				<option>Flammable Solids</option>
+																				<option>Oxidizing substances</option>
+																				<option>Toxic and infectious substances</option>
+																				<option>Radioactive material</option>
+																				<option>Corrosive substances</option>
+																				<option>Misc. dangerous substances</option>
+																			</select>
+																		</div>
+																		
+																		<div class="mls mrs">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			by
+																		</div>
+																		<div class="grid-2 mrs">
+																			<input type="number" min="0" value="10">
+																		</div>
+																		<select>
+																			<option>%</option>
+																			<option>$ (USD)</option>
+																		</select>
+																		<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
+																	</div>
+																	
+																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+																</div>
+															</div>
+															<div class="card-content">
+																<button class="primary button" ng-click="item.viewModifiers20 = !item.viewModifiers20">Save Changes
+																</button>
+																<button class="button">Cancel</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</td>
+											<td>
+												<span ng-show="item.price40weight>0 && item.price40volume>0">
+													<a href='' ng-click="item.viewModifiers40 = !item.viewModifiers40">{{item.price40weight | currency}}/lb | {{item.price40volume | currency}}/ft<span class="expo">3</span></a>
+												</span>
+												<span ng-show="item.price40weight==0 && item.price40volume==0">
+													<a href='' class="subtle-text" ng-click="item.viewModifiers40 = !item.viewModifiers40"><i class="plus"></i> Add Price</a>
+												</span>
+												<div class="lightbox one" ng-class='{"open":item.viewModifiers40}'>
+													<div class="modal large">
+														<div class="card">
+															<div class="card-header">
+																<h2>{{item.name}} Modifiers</h2>
+																<a href='' class="close" ng-click="item.viewModifiers40 = !item.viewModifiers40">&times;</a>
+															</div>
+															<div class="card-content">
+																<span class="note-text">20' Standard, Less than Container Load, Port-to-Port</span>
+															</div>
+															<div class="card-content">
+																<div class="grid-12 input-group mbl">
+																	<div class="grid-6">
+																		<label>Base Price per lb.</label>
+																		<input type="number" ng-model="item.price40weight">
+																	</div>
+																	<div class="grid-6">
+																		<label>Base Price per cu. ft.</label>
+																		<input type="number" ng-model="item.price40volume">
+																	</div>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Ship Date Modifiers</label>
+																	<p class="small-text">This affects container cost for how fast you can load commodities onto each container.</p>
+																	<div class="grid-12 well modifiers">
+																		<div class="grid-3">
+																			14+ Days (Normal)
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="grid-12 well modifiers">
+																		<div class="grid-3">
+																			0-14 Days (Fast)
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="5">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Commodity Modifiers</label>
+																	<p class="small-text">This affects container cost for the commodities that you ship.</p>
+																	<div class="grid-12 well" ng-show="commoditiyModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any commodity modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in commoditiyModifiers">
+																		<div class="grid-3">
+																			<input type="text" placeholder="Enter name of commodity...">
+																		</div>
+																		<div class="grid-5">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																		<div class="grid-1 alignright">
+																			<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
+																		</div>
+																	</div>
+																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Container Amount</label>
+																	<p class="small-text">This affects container cost on full container loads only.</p>
+																	<div class="grid-12 well" ng-show="containerAmountModifier.length==0">
+																		<span class="subtle-text">You haven't listed any container amount modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in containerAmountModifier">
+																		<div class="">
+																			<select>
+																				<option>1</option>
+																				<option>2+</option>
+																				<option>3+</option>
+																				<option>4+</option>
+																				<option>5+</option>
+																				<option>6+</option>
+																				<option>7+</option>
+																				<option>8+</option>
+																				<option>9+</option>
+																				<option>10+</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			Containers
+																		</div>
+																		<div class="">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			by
+																		</div>
+																		<div class="grid-2 mrs">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<select>
+																			<option>%</option>
+																			<option>$ (USD)</option>
+																		</select>
+																		<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
+																	</div>
+																	
+																	<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+																</div>
+																<div class="grid-12 input-group">
+																	<label>Hazardous Materials</label>
+																	<p class="small-text">This affects container cost for shipping hazardous materials</p>
+																	<div class="grid-12 well" ng-show="hazardousMaterialModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any hazarous materials modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in hazardousMaterialModifiers">
+																		<div class="">
+																			<select>
+																				<option>Explosives</option>
+																				<option>Gases</option>
+																				<option>Flammable Liquids</option>
+																				<option>Flammable Solids</option>
+																				<option>Oxidizing substances</option>
+																				<option>Toxic and infectious substances</option>
+																				<option>Radioactive material</option>
+																				<option>Corrosive substances</option>
+																				<option>Misc. dangerous substances</option>
+																			</select>
+																		</div>
+																		
+																		<div class="mls mrs">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="mls mrs">
+																			by
+																		</div>
+																		<div class="grid-2 mrs">
+																			<input type="number" min="0" value="10">
+																		</div>
+																		<select>
+																			<option>%</option>
+																			<option>$ (USD)</option>
+																		</select>
+																		<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
+																	</div>
+																	
+																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+																</div>
+															</div>
+															<div class="card-content">
+																<button class="primary button" ng-click="item.viewModifiers40 = !item.viewModifiers40">Save Changes
+																</button>
+																<button class="button">Cancel</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</td>
+											<td>
+												<span ng-show="item.price40hcWeight>0 && item.price40hcVolume>0">
+													<a href=''>{{item.price40hcWeight | currency}}/lb | {{item.price40hcVolume | currency}}/ft<span class="expo">3</span></a>
+												</span>
+												<span ng-show="item.price40hcWeight==0 && item.price40hcVolume==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+											</td>
+											<td>
+												<span ng-show="item.price45weight>0 && item.price45volume>0">
+													<a href=''>
+														{{item.price45weight | currency}}/lb | {{item.price45volume | currency}}/ft<span class="expo">3</span>
+
+													</a>
+												</span>
+												<span ng-show="item.price45weight==0 && item.price45volume==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+											</td>
+											<td>
+												<span ng-show="item.price45hWeightc>0 && item.price45hcVolume>0">
+
+													<a href=''>
+														{{item.price45hcWeight | currency}}/lb | {{item.price45hcVolume | currency}}/ft<span class="expo">3</span>
+													</a>
+												</span>
+												<span ng-show="item.price45hWeightc==0 && item.price45hcVolume==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+											<td>
+												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+											</td>
+										</tr>
+										<tr>
+											<td><a href=''><i class="plus"></i> New Route</a></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

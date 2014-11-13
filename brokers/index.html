@@ -1,0 +1,187 @@
+<!DOCTYPE html> 
+<html ng-app>
+	<head> 
+		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>ShipSeed</title> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="../js/shipseed.js"></script>
+	</head> 
+	<body ng-controller="ShipSeedCtrl"> 
+		<div class="">
+			<div class="main-header">
+				<h1>
+					<a href=''>ShipSeed</a>
+				</h1>
+				<div class="search">
+					<div class="grid-12" ng-show="searching=='no'">
+						<a href='results.html' class="info-text">
+							<i class="search-icon"></i>
+							Find Routes
+						</a>
+					</div>
+				
+					
+				</div>
+				<nav class="main-nav">
+					<ul>
+						<li>
+							<a href=''>Orders</a>
+						</li>
+						<li>
+							<a href=''>Routes</a>
+						</li>
+						<li>
+							<a href=''>Messages</a>
+						</li>
+						<li>
+							<a href=''>Documents</a>
+						</li>
+						<li>
+							<a href=''>Mitch</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="main-content">
+				<div class="container">
+					<div class="grid-12 page-title">
+						<h2>Your Orders</h2>
+						<div class="filters">
+							<ul>
+								<li>
+									<a class="active" href=''>All</a>
+								</li>
+								<li>
+									<a href=''>New</a>
+								</li>
+								<li>
+									<a href=''>Filing</a>
+								</li>
+								<li>
+									<a href=''>Loaded on Vessel</a>
+								</li>
+								<li>
+									<a href=''>In Transit</a>
+								</li>
+								<li>
+									<a href=''>Arrived</a>
+								</li>
+								<li>
+									<a href=''>Completed</a>
+								</li>
+							</ul>
+						</div>
+						
+					</div>
+					<div class="grid-12">
+						<div class="order-item">
+							<div class="order-item-header">
+								<div class="item">
+									<h3>Order Date</h3>
+									<p>10/20/2014</p>
+								</div>
+								<div class="item">
+									<h3>Origination Port</h3>
+									<p>Laem Chabang, Thailand</p>
+								</div>
+								<div class="item">
+									<h3>Destination Port</h3>
+									<p>San Pedro, US</p>
+								</div>
+								<div class="item">
+									<h3>Importer</h3>
+									<p>J&amp;B Importers</p>
+								</div>
+								<div class="item">
+									<h3>Total</h3>
+									<p>$1,200.00</p>
+								</div>
+								<div class="item">
+									<h3>Order ID</h3>
+									<p>1231321</p>
+								</div>
+							</div>
+							<div class="order-item-content">
+								<div class="status-actions">
+									<h4 ng-class='{"highlight":updateStatus=="statusSaved"}'>
+										{{status}}
+										<span class="status-info">Just now</span>
+									</h4>
+									<button class="primary small button" ng-click="updateStatus = 'openModal'">Update Status</button>
+									<button class="small button">View Documents</button>
+									<button class="small button">Contact Importer</button>
+								</div>
+								<div class="order-info">
+									<h4 class="tag food">Food</h4>
+									<div class="containers">
+										<div class="container-item">
+											<img src="../img/20standard.png">
+											<span class="amount">2</span>
+											<h5>20' Standard</h5>
+										</div>
+										<div class="container-item">
+											<img src="../img/40standard.png">
+											<span class="amount">1</span>
+											<h5>40' Standard</h5>
+									</div>
+									</div>
+								</div>
+								<div class="order-info">
+									<span class="subtle-text">Full Container Load, Port-to-Port &middot; 28 days in transit</span>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="lightbox one" ng-class='{"open":updateStatus=="openModal"}'>
+			<div class="modal">
+				<div class="card">
+					<div class="card-header">
+						<h2>Update Status</h2>
+						<a href='' class="close" ng-click="updateStatus = 'closeModal'">
+							&times;
+						</a>
+					</div>
+					<div class="card-content">
+						<div class="checkbox fancy">
+							<input type="radio" id="new" name="status" ng-model="status" value="New">
+							<label for="new"><strong class="mrs">New</strong>Fresh orders from importers</label>
+						</div>
+						<div class="checkbox fancy">
+							<input type="radio" id="filing" name="status" ng-model="status" value="Filing">
+							<label for="filing"><strong class="mrs">Filing</strong> You've put in the necessary paper work</label>
+						</div>
+						<div class="checkbox fancy">
+							<input type="radio" id="loading" name="status" ng-model="status" value="Loading on Vessel">
+							<label for="loading"><strong class="mrs">Loading on Vessel</strong> The containers are being loaded</label>
+						</div>
+						<div class="checkbox fancy">
+							<input type="radio" id="transit" name="status" ng-model="status" value="In Transit">
+							<label for="transit"><strong class="mrs">In Transit</strong> Ships have set sail</label>
+						</div>
+						<div class="checkbox fancy">
+							<input type="radio" id="arrived" name="status" ng-model="status" value="Arrived">
+							<label for="arrived"><strong class="mrs">Arrived</strong> The ships have arrived at their destination</label>
+						</div>
+						<div class="checkbox fancy">
+							<input type="radio" id="complete" name="status" ng-model="status" value="Complete">
+							<label for="complete"><strong class="mrs">Complete</strong> The order is finished</label>
+						</div>
+					</div>
+					<div class="card-content">
+						<button class="primary button" ng-click="statusSaved()">Update Status</button>
+						<button class="button">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

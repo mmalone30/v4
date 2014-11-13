@@ -1,0 +1,456 @@
+<!DOCTYPE html> 
+<html ng-app>
+	<head> 
+		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>ShipSeed</title> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="../js/shipseed.js"></script>
+	</head> 
+	<body ng-controller="ShipSeedCtrl" ng-class='{"hasLightbox":hasLightbox=="up"}'> 
+		<div class="main-wrapper">
+			<div class="main-header">
+				<h1>
+					<a href=''>ShipSeed</a>
+				</h1>
+				<nav class="main-nav">
+					<ul>
+						<li>
+							<a href=''>For Logistics Service Providers</a>
+						</li>
+						<li>
+							<a href=''>Create Account</a>
+						</li>
+						<li>
+							<a href=''>Log in</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="search-content">
+				<div class="sidebar">
+					<ul>
+						
+						<li>
+							<h3 class="">Origination</h3>
+							<input type="text" value="Laem Chabang, Thailand">
+							<div class="typeahead-wrapper hide">
+								<input type="text" ng-model="originText" placeholder="Laem Chabang, Thailand">
+								<ul class="typeahead-list" ng-hide="!originText || hasOrigin">
+									<li ng-repeat="port in ports | filter:originText | limitTo:8">
+										<a href='' ng-click="originSelected(port)">{{port.name}}</a>
+									</li>
+									<li class="subtle-text" ng-show="(ports | filter:originText).length == 0">
+										I can't find this port.
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<h3 class="">Destination</h3>
+							<input type="text" value="San Pedro, US">
+							<div class="typeahead-wrapper hide">
+								<input type="text" ng-model="destinationText" placeholder="San Pedro, US">
+								<ul class="typeahead-list" ng-hide="!destinationText || hasDestination">
+									<li ng-repeat="port in ports | filter:destinationText | limitTo:8">
+										<a href='' ng-click="destinationSelected(port)">{{port.name}}</a>
+									</li>
+									<li class="subtle-text" ng-show="(ports | filter:destinationText).length == 0">
+										I can't find this port.
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<h3 class="">Commodity</h3>
+							<input type="text" value="Food">
+							<div class="hide multi-select-drop" ng-class='{"open":showCommodity}'>
+								<button class="button primary" ng-click="showCommodity = !showCommodity">Any</button>
+								<ul>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="all-commodities" ng-model="allCommodities">
+											<label for="all-commodities">Any</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="food-commodities" ng-model="foodCommodities">
+											<label for="food-commodities">Food</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="electronics-commodities" ng-model="electronicsCommodities">
+											<label for="electronics-commodities">Electronics</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="auto-commodities" ng-model="autoCommodities">
+											<label for="auto-commodities">Auto Parts</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="machinery-commodities" ng-model="machineryCommodities">
+											<label for="machinery-commodities">Machinery</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="cars-commodities" ng-model="carsCommodities">
+											<label for="cars-commodities">Cars</label>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<h3 class="">Container Load</h3>
+							<div class="multi-select-drop" ng-class='{"open":showContainerLoad}'>
+								<button class="button primary" ng-click="showContainerLoad = !showContainerLoad">Full Container Load (FCL)</button>
+								<ul>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="all-container-loads" ng-model="allContainerLoads">
+											<label for="all-container-loads">Any</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="fcl" ng-model="fcl">
+											<label for="fcl">Full Container Loads (FCL)</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="lcl" ng-model="lcl">
+											<label for="lcl">Less than Container Load (LCL)</label>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</li>
+						<li>
+							<h3 class="">Container Type</h3>
+							<div class="multi-select-drop" ng-class='{"open":showContainerType}'>
+								<button class="button primary" ng-click="showContainerType = !showContainerType">20' Standard</button>
+								<ul>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="anyContainerType" ng-model="anyContainerType">
+											<label for="anyContainerType">Any</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="standard20" ng-model="standard20">
+											<label for="standard20">20' Standard</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="standard40" ng-model="standard40">
+											<label for="standard40">40' Standard</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="highcube40" ng-model="highcube40">
+											<label for="highcube40">40' High Cube</label>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<h3 class="">In Transit Time</h3>
+							<div class="multi-select-drop" ng-class='{"open":showTransitTime}'>
+								<button class="button primary" ng-click="showTransitTime = !showTransitTime">Any</button>
+								<ul>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="anyTransitTime" ng-model="anyTransitTime">
+											<label for="anyTransitTime">Any</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="transit15" ng-model="transit15">
+											<label for="transit15">15+ Days</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="transit20" ng-model="transit20">
+											<label for="transit20">20+ Days</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="transit25" ng-model="transit25">
+											<label for="transit25">25+ Days</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="transit30" ng-model="transit30">
+											<label for="transit30">30+ Days</label>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<h3 class="">Hazardous Materials</h3>
+							<div class="multi-select-drop" ng-class='{"open":showHazardMats}'>
+								<button class="button primary" ng-click="showHazardMats = !showHazardMats">None</button>
+								<ul>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="noHazMats" ng-model="noHazMats">
+											<label for="noHazMats">None</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="gasHazMat" ng-model="gasHazMat">
+											<label for="gasHazMat">Gas</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="explosiveHazMat" ng-model="explosiveHazMat">
+											<label for="explosiveHazMat">Explosives</label>
+										</div>
+									</li>
+									<li>
+										<div class="checkbox">
+											<input type="checkbox" id="corrosiveHazMat" ng-model="corrosiveHazMat">
+											<label for="corrosiveHazMat">Corrosive Materials</label>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="search-results">
+					<div class="container">
+						<div class="page-title">
+							<h2>
+								Find Logistic Service Providers 
+								<span class="subtle-text small-text mls">Displaying 200 secret brokers</span>
+								<a href=''><i class="question"></i></a>
+							</h2>
+						</div>
+						<div class="grid-12 panel search-result" ng-repeat="broker in brokers | filter:{commodity:'food'}">
+							<div class="grid-12" ng-click="broker.viewDetails = 'open'; broker.hasLightbox = 'up'">
+								<div class="grid-8">
+									<h3 class="{{broker.commodity}}">{{broker.commodity}}</h3>
+									<h4>
+										{{broker.name}}
+										
+									</h4>
+									<div class="grid-12">
+										<i class="star gold"></i>
+										<i class="star gold"></i>
+										<i class="star gold"></i>
+										<i class="star gold"></i>
+										<i class="subtle-text star"></i>
+										<a href=''>({{broker.commentNum}} Reviews)</a>
+										
+									</div>
+									<div class="grid-12">
+										{{broker.transitTime}} Days Transit Time
+										<span class="small-text text-has-icon success-text">
+											<i class="thumb-up mrs"></i> Awesome
+										</span>
+									</div>
+									
+								</div>
+								<div class="grid-4">
+									
+									<span class="price">{{broker.price | currency}}</span>
+									<span class="small-text subtle-text">per 20' Standard container</span>
+								</div>
+							</div>
+							<div class="lightbox" ng-class='{"open":broker.viewDetails=="open"}'>
+								<div class="modal" ng-class='{"hideModal":signIn}'>
+									<div class="card">
+										<div class="card-header">
+											<h2>{{broker.name}}</h2>
+										
+											
+											<a href='' ng-click="broker.viewDetails = 'close'" class="close">&times;</a>
+										</div>
+										<div class="card-content">
+											<div class="grid-12 well">
+												<div class="grid-12">
+													<p class="large-text tag">Laem Chabang<i class="mls mrs move-right"></i> San Pedro</span></p>
+												</div>
+												<div class="grid-12 mbs">
+													<div class="grid-4">
+														Commodity
+													</div>
+													<div class="grid-8">
+														<span class="tag {{broker.commodity}}">{{broker.commodity}}</span>
+													</div>
+												</div>
+												<div class="grid-12 mbs">
+													<div class="grid-4">
+														Price per Container
+													</div>
+													<div class="grid-8">
+														<ul>
+															<li><strong>{{broker.price | currency}}</strong> <span class="small-text">14+ Days to Load</span></li>
+															<li><strong>{{fastPrice(broker) | currency}}</strong> <span class="small-text">1 - 14 Days to load</span></li>
+													</div>
+												</div>
+												<div class="grid-12 mbs">
+													<div class="grid-4">
+														Transit Time
+													</div>
+													<div class="grid-8">
+														{{broker.transitTime}} Days
+													</div>
+												</div>
+												<div class="grid-12">
+													<a href=''>Find more like {{broker.name}} &rarr;</a>
+												</div>
+												
+											</div>
+											<div class="grid-12 well hide">
+												<h4 class="mbs">Select your onboarding time</h4>
+											
+												<div class="grid-12">
+													<div class="grid-6">
+														<div class="fancy checkbox">
+															<input type="radio" name="onboarding" id="{{broker.name}}fastOnboarding">
+															<label for="{{broker.name}}fastOnboarding">
+																<p>Fast Onboarding</p>
+																<p class="small-text">0-14 Days</p>
+																<h4>+ $35.00</h4>
+															</label>
+														</div>
+													</div>
+													<div class="grid-6">
+														<div class="fancy checkbox">
+															<input type="radio" name="onboarding" id="{{broker.name}}normalOnboarding">
+															<label for="{{broker.name}}normalOnboarding">
+																<p>Normal Onboarding</p>
+																<p class="small-text">14+ Days</p>
+																<h4>+ $0.00</h4>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="grid-12 well">
+												<h4 class="mbs">Importer Reviews for {{broker.name}}</h4>
+												<div class="grid-12 mbs">
+													<div class="grid-4">
+														Overall
+													</div>
+													<div class="grid-8">
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="subtle-text star"></i>
+														<span class="small-text text-has-icon success-text">
+															<i class="thumb-up mrs"></i> Awesome
+														</span>
+													</div>
+												</div>
+												<div class="grid-12 mbs">
+													<div class="grid-4">
+														Customer Service
+													</div>
+													<div class="grid-8">
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="subtle-text star"></i>
+													</div>
+												</div>
+												<div class="grid-12 mbs">
+													<div class="grid-4">
+														Timely Arrivals
+													</div>
+													<div class="grid-8">
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="subtle-text star"></i>
+													</div>
+												</div>
+												<div class="grid-12 mbs">
+													<div class="grid-4">
+														Communication
+													</div>
+													<div class="grid-8">
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="star gold"></i>
+														<i class="subtle-text star"></i>
+													</div>
+												</div>
+												<div class="grid-12 mbs">
+													<a href=''>Read reviews &rarr;</a>
+												</div>
+											</div>
+										</div>
+										<div class="card-content">
+											<button class="button primary" ng-click="signIn = !signIn">Book a Shipment</button>
+											<button class="button">Keep looking</button>
+										</div>
+									</div>
+								</div>
+								<div class="modal" ng-class='{"showModal":signIn}'>
+									<div class="card">
+										<div class="card-header">
+											<h2>Sign in to book your shipment</h2>
+											<a href='' class="close">&times;</a>
+										</div>
+										<div class="card-content">
+											<div class="grid-12 well">
+												<div class="grid-12">
+													<div class="input-group has-icon">
+														<label>Email Address</label>
+														<i class="email"></i>
+														<input type="text">
+													</div>
+													<div class="input-group has-icon">
+														<label>Password</label>
+														<i class="lock"></i>
+														<input type="password">
+													</div>
+												</div>
+												<div class="grid-12">
+													<a href=''>I'm having trouble signing in.</a>
+												</div>
+											</div>
+										</div>
+										<div class="card-content">
+											<a href='new-order.html' class="primary button">Sign in</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

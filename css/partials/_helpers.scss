@@ -1,0 +1,243 @@
+/***********************************************
+
+	Helpers
+
+***********************************************/
+
+// Typographic helpers
+
+$light-gray:#e2e6e9;
+$dark-gray:#34495e;
+$medium-gray:#8c99a6;
+$blue:#3498db;
+
+$type:"lato", "Helvetica Neue", Helvetica, san-serif;
+
+body {
+	font-family:$type;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family:$type;
+}
+
+.expo {
+	font-size:$base-font-size*0.6;
+	position:relative;
+	top:-0.5em;
+}
+
+.subtle-text {
+	color:$medium-gray;
+	font-weight: 400;
+}
+
+.small-text {
+	font-size:$base-font-size*0.8;
+}
+
+.large-text {
+	font-size:$h5-font-size;
+}
+
+.text-has-icon {
+	@include display(flex);
+	@include align-items(center);
+}
+
+.success-text {
+	color:#27ae60;
+}
+
+.info-text {
+	color:$blue;
+}
+
+.aligncenter {
+	text-align: center;
+}
+
+ul.spaced {
+	li {
+		margin-bottom: 1em;
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+table {
+	thead {
+		th {
+			border-bottom-color:$light-gray;
+			border-bottom-width:3px;
+			padding:7px;
+		}
+	}
+	tbody {
+		td {
+			border-bottom-color:$light-gray;
+			padding:7px;
+		}
+	}
+	&.zebra {
+		tbody {
+			tr:nth-of-type(odd) {
+				td {
+					background:tint($light-gray, 60%);
+				}
+			}
+		}
+	}
+}
+
+.button {
+	@include linear-gradient(tint($light-gray, 0%), shade($light-gray, 10%));
+	border:0;
+	padding:8px 15px;
+	font-family: $base-font-family;
+	font-size:$base-font-size;
+	border-radius: 3px;
+	border:1px solid shade($light-gray, 20%);
+	box-shadow: inset 0 1px 0 tint($light-gray, 40%);
+	color:$dark-gray;
+	&:hover {
+		cursor: pointer;
+		background: $light-gray;
+		color:$dark-gray;
+	}
+	&:focus {
+		outline:0;
+	}
+	&:active {
+		box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
+	}
+	&.primary {
+		@include linear-gradient($blue, shade($blue, 10%));
+		color:white;
+		border:1px solid shade($blue, 20%);
+		box-shadow: inset 0 1px 0 tint($blue, 40%);
+		&:hover {
+			background: $blue;
+		}
+		&:active {
+			box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
+		}
+		&:focus {
+			outline:0;
+		}
+	}
+	&.has-icon {
+
+	}
+	&.small {
+		font-size:$base-font-size*0.8;
+		padding:5px 10px;
+	}
+}
+
+.hide {
+	display: none !important;
+}
+
+.tag {
+	background: $blue;
+	padding:3px 6px;
+	border-radius: 3px;
+	font-weight: 900;
+	text-transform: uppercase;
+	color:white;
+	text-align: center;
+	i:before {
+		text-transform: lowercase;
+	}
+	&.food {
+		background:$blue;
+		
+	}
+	&.cars {
+		background:#D11E48;
+		
+	}
+	&.machinery {
+		background:#7FC7AF;
+		
+	}
+	&.electronics {
+		background:#F8BE00;
+		
+	}
+	&.toys {
+		background: #8e64aa;
+	
+	}
+	&.animals {
+		background:#CDBDAE;
+	
+	}
+}
+
+.mbs {
+	margin-bottom: 0.5em !important;
+}
+
+.mrs {
+	margin-right: 0.5em !important;
+}
+.mts {
+	margin-top: 0.5em !important;
+}
+
+.mls {
+	margin-left: 0.5em !important;
+}
+
+.mtl {
+	margin-top:2em !important;
+}
+
+.mbl {
+	margin-bottom:2em !important;
+}
+
+.mrl {
+	margin-right:2em !important;
+}
+
+.mll {
+	margin-left:2em !important;
+}
+
+// Grid
+
+$fg-column: 60px;
+$fg-gutter:25px;
+$fg-max-columns: 12;
+
+/* Define grid-1 through grid-11 */
+
+@for $i from 1 through 11 {
+	.grid-#{$i} {
+		display: block;
+		float: left;
+		width: flex-grid($i);
+		margin-right: flex-gutter();
+		position: relative;
+		min-height: 1px;
+	}
+}
+
+/* Define grid-12. Use grid-12 as a 'row' class as well so you don't have to use the 'last' class. */
+
+.grid-12 {
+	width:100%;
+	display: block;
+	float: left;
+	position: relative;
+	min-height: 1px;
+	[class^='grid-'] {
+		&:last-of-type {
+			margin-right: 0;
+		}
+	}
+}

@@ -1,0 +1,570 @@
+<!DOCTYPE html> 
+<html ng-app>
+	<head> 
+		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>ShipSeed</title> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="../js/shipseed.js"></script>
+	</head> 
+	<body ng-controller="ShipSeedCtrl" ng-class='{"hasLightbox":hasLightbox=="up"}'> 
+		<div class="main-wrapper">
+			<div class="main-header">
+				<h1>
+					<a href=''>ShipSeed</a>
+				</h1>
+				<nav class="main-nav">
+					<ul>
+						<li>
+							<a href=''>For Logistics Service Providers</a>
+						</li>
+						<li>
+							<a href=''>Create Account</a>
+						</li>
+						<li>
+							<a href=''>Log in</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="search-content">
+				<div class="sidebar">
+					
+					<ul class="mtl">
+						
+						<li>
+							<h3 class="">Origination <a href=''>Edit</a></h3>
+							<span>Laem Chabang, Thailand</span>
+						</li>
+						<li>
+							<h3 class="">Destination <a href=''>Edit</a></h3>
+							<span>San Pedro, US</span>
+						</li>
+						<li ng-class='{"active":orderStage=="commodity"}'>
+							<h3 class="">Commodity <a href=''>Edit</a></h3>
+							
+							<div ng-repeat="commodity in commodities"><span>{{commodity.name}}</span></div>
+							<div ng-show="commodities.length==0"><span>-</span></div>
+							
+							
+						</li>
+						<li ng-class='{"active":orderStage=="containerLoad"}'>
+							<h3 class="">Container Load <a href=''>Edit</a></h3>
+							<span ng-show="containerLoad=='fcl'">Full Container Load</span>
+							<span ng-show="containerLoad=='lcl'">Less than Container Load</span>
+							<span ng-show="containerLoad=='none'">-</span>
+						</li>
+						<li  ng-class='{"active":orderStage=="containerType"}'>
+							<h3 class="">Container Type <a href=''>Edit</a></h3>
+							<div ng-show="standard20==true"><span>20' Standard ({{standard20Num}})</span></div>
+							<div ng-show="standard40==true"><span>40' Standard ({{standard40Num}})</span></div>
+							
+							<div ng-show="highcube40=='open'"><span>40' High Cube ({{highCubeNum}})</span></div>
+							<span ng-hide="standard20==true || standard40==true || highcube40=='open'">-</span>
+						</li>
+						<li ng-class='{"active":orderStage=="loadTime"}'>
+							<h3>Load Time <a href=''>Edit</a></h3>
+							<span ng-show="shipSpeed=='normal'">Normal (14+ Days)</span>
+							<span ng-show="shipSpeed=='fast'">Fast (1-14 Days)</span>
+						</li>
+						<li  ng-class='{"active":orderStage=="hazMats"}'>
+							<h3 class="">Hazardous Materials <a href=''>Edit</a></h3>
+							<span ng-show="hasHazMats=='yes'">Yes</span>
+							<span ng-show="hasHazMats=='no'">No</span>
+						</li>
+					</ul>
+				</div>
+				<div class="search-results">
+					<div class="container" ng-show="orderStage=='commodity'">
+						<div class="page-title">
+							<h2 class="">
+								What commodities are you shipping?
+							</h2>
+						</div>
+						<div class="grid-12 mbl">
+							<div class="grid-12 mbl input-group">
+								<label>Enter a commodity</label>
+								
+
+								<div class="grid-12 removable-form" ng-repeat="commodity in commodities">
+									<input type='text' placeholder="Food, electronics, machinery..." ng-model="commodity.name"><a ng-click="commodities.pop({})" href=''>&times;</a>
+								</div>
+								<button class="small button has-icon" ng-click="commodities.push({})">
+									<i class="plus"></i>
+									New
+								</button>
+							</div>
+
+						</div>
+						<div class="grid-12">
+							<button class="button primary" ng-click="orderStage='containerLoad'">Save &amp; Continue</button>
+							<button class="button">Cancel</button>
+						</div>
+					</div>
+					<div class="container" ng-show="orderStage=='containerLoad'">
+						<div class="page-title">
+							<h2>Is your shipment a full or less than full container?</h2>
+						</div>
+						<div class="grid-12 mbl">
+							<div class="grid-12">
+								<div class="checkbox">
+									<input type="radio" name="containerLoad" id="fcl" ng-model="containerLoad" value="fcl">
+									<label for="fcl">
+										Full Container Load
+										<div class="subtle-text">Description of full container load.</div>
+									</label>
+									
+								</div>
+								<div class="card mbl" ng-show="containerLoad=='fcl'" style="margin-left:1.5em;">
+									<div class="card-content">
+										<h6 class="mbs">How do you want your shipment delivered?</h6>
+										<div class="checkbox">
+											<input type="radio" name="shipmentDelivered" id="doorToDoor" ng-model="shipmentDelivered" value="door">
+											<label for="doorToDoor">Door-to-door</label>
+										</div>
+										<div class="well" ng-show="shipmentDelivered=='door'">
+											<div class="input-group">
+												<label>City of Loading</label>
+												<input type="text">
+											</div>
+											<div class="input-group">
+												<label>Final Destination</label>
+												<input type="text">
+											</div>
+										</div>
+										<div class="checkbox">
+											<input type="radio" name="shipmentDelivered" id="portToPort" ng-model="shipmentDelivered" value="port">
+											<label for="portToPort">Port-to-port</label>
+										</div>
+										
+									</div>
+								</div>
+								
+							</div>
+							<div class="grid-12">
+								<div class="checkbox">
+									<input type="radio" name="containerLoad" id="lcl" ng-model="containerLoad" value="lcl">
+									<label for="lcl">
+										Less than Container Load
+										<div class="subtle-text">Description of less than container load.</div>
+									</label>
+									
+								</div>
+								<div class="card grid-12" style="margin-left:1.5em;" ng-show="containerLoad=='lcl'">
+									<div class="card-content">
+										<div class="grid-12 input-group">
+											<div class="grid-3">
+												<label>City of Loading</label>
+											</div>
+											<div class="grid-9">
+												<input type="text">
+											</div>
+										</div>
+										<div class="grid-12 input-group">
+											<div class="grid-3">
+												<label>Final Destination</label>
+											</div>
+											<div class="grid-9">
+												<input type="text">
+											</div>
+										</div>
+										<div class="grid-12 input-group">
+											<div class="grid-3">
+												<label>Weight of Cargo</label>
+											</div>
+											<div class="grid-6">
+												<input type="text">
+											</div>
+											<div class="grid-3">
+												<select>
+													<option>lbs.</option>
+													<option>kl.</option>
+												</select>
+											</div>
+										</div>
+										<div class="grid-12 input-group">
+											<div class="grid-3">
+												<label>Volume of Cargo</label>
+											</div>
+											<div class="grid-6">
+												<input type="text">
+											</div>
+											<div class="grid-3">
+												<select>
+													<option>Cubic ft.</option>
+													<option>Cubic meters.</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="grid-12">
+							<button class="primary button" ng-click="orderStage='containerType'">Save &amp; Continue</button>
+							<button class="button">Cancel</button>
+						</div>
+					</div>
+					<div class="container" ng-show="orderStage=='containerType'">
+						<div class="page-title">
+							<h2>Which containers do you need?</h2>
+						</div>
+						<div class="grid-12 mbl">
+							<div class="grid-12 container-select" ng-class='{"active":standard20}' ng-click="standard20=true">
+								<div class="grid-3">
+									<img src="../img/20standard.png">
+								</div>
+								<div class="grid-9">
+									<h6>20' Standard</h6>
+									<span class="small-text">Description of this container.</span>
+									<div class="input-group" ng-show="standard20==true">
+										<label>How many do you need?</label>
+										<input class="small" type="text" ng-model="standard20Num"><a href='' ng-click="standard20=false">Cancel</a>
+									</div>
+								</div>
+							</div>
+							<div class="grid-12 container-select" ng-class='{"active":standard40}' ng-click="standard40=true">
+								<div class="grid-3">
+									<img src="../img/40standard.png">
+								</div>
+								<div class="grid-9">
+									<h6>40' Standard</h6>
+									<span class="small-text">Description of this container.</span>
+									<div class="input-group" ng-show="standard40==true">
+										<label>How many do you need?</label>
+										<input class="small" type="text" ng-model="standard40Num"><a href='' ng-click="standard40=false">Cancel</a>
+									</div>
+								</div>
+							</div>
+							<div class="grid-12 container-select" ng-class='{"active":highcube40=="open"}' ng-click="highcube40='open'">
+								<div class="grid-12">
+									<div class="grid-3">
+										<img src="../img/40highcube.png">
+									</div>
+									<div class="grid-9">
+										<h6>40' High Cube</h6>
+										<span class="small-text">Description of this container.</span>
+										<div class="input-group" ng-show="highcube40=='open'">
+											<label>How many do you need?</label>
+											<input class="small" type="text" ng-model="highCubeNum"><a href='' ng-click="highcube40='close'">Cancel</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="grid-12">
+							<button class="primary button" ng-click="orderStage='loadTime'">Save &amp; Continue</button>
+							<button class="button">Cancel</button>
+						</div>
+					</div>
+					<div class="container" ng-show="orderStage=='loadTime'">
+						<div class="page-title">
+							<h2>When do you want your containers loaded onto the vessel?</h2>
+						</div>
+						<div class="grid-12 input-group">
+							<div class="checkbox">
+								<input type="radio" id="fast" name="shipspeed" ng-model="shipSpeed" value="fast">
+								<label for="fast">
+									In the next 14 days
+									
+								</label>
+							</div>
+							<div class="checkbox">
+								<input type="radio" id="normal" name="shipspeed" ng-model="shipSpeed" value="normal">
+								<label for="normal">
+									After 14 days
+									
+								</label>
+							</div>
+							
+						</div>
+						<div class="grid-12">
+							<button class="primary button" ng-click="orderStage='hazMats'">Save &amp; Continue</button>
+							<button class="button">Cancel</button>
+						</div>
+					</div>
+					<div class="container" ng-show="orderStage=='hazMats'">
+						<div class="page-title">
+							<h2>Are you shipping any hazardous materials?</h2>
+						</div>
+						<div class="grid-12 mbl">
+							<div class="grid-12 mbs">
+								<div class="button-group">
+									<button class="has-icon button" ng-class='{"active":hasHazMats=="no"}' ng-click="hasHazMats='no'"><i class="check mrs" ng-show="hasHazMats=='no'"></i>No</button>
+									<button class="has-icon button" ng-class='{"active":hasHazMats=="yes"}' ng-click="hasHazMats='yes'"><i class="check mrs" ng-show="hasHazMats=='yes'"></i>Yes</button>
+								</div>
+							</div>
+							<div class="grid-12 card" ng-show="hasHazMats=='yes'">
+								<div class="card-content">
+									<h6 class="mbs">Ok, which kind of hazardous materials are you shipping?</h6>
+									<div class="checkbox">
+										<input type="checkbox" id="explosives">
+										<label for="explosives">Explosives</label>
+									</div>
+									<div class="checkbox">
+										<input type="checkbox" id="Gases">
+										<label for="Gases">Gases</label>
+									</div>
+									<div class="checkbox">
+										<input type="checkbox" id="Flammable Gases">
+										<label for="Flammable Gases">Flammable Gases</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="grid-12">
+							<button ng-click="orderStage='results'" class="primary button">Save &amp; Continue</a>
+							<button class="button">Cancel</button>
+						</div>
+					</div>
+					<div class="container" ng-show="orderStage=='results'">
+						<div class="page-title">
+							<h2>
+								Your Best Match
+								
+							</h2>
+							<div class="filters">
+								<ul>
+									<li>
+										<a href='' class="active">Best Price</a>
+									</li>
+									<li>
+										<a href='' class="">Quickest Transit Time</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="card" ng-repeat="broker in brokers">
+							<div class="card-header">
+								<h2>{{broker.name}}</h2>
+								<div>
+									<i class="star gold"></i>
+									<i class="star gold"></i>
+									<i class="star gold"></i>
+									<i class="star gold"></i>
+									<i class="subtle-text star"></i>
+									<span class="mls small-text">(Based on 219 Reviews)</span>
+								</div>
+							</div>
+							<div class="card-content">
+								<div class="grid-12 well">
+									<div class="grid-12">
+										<div class="grid-6">
+											<ul>
+												<li class="mbs">
+													<span class="small-text subtle-text">Total</span>
+													<h4 class="">{{((broker.price*2) + broker.price40) | currency}}</h4>
+												</li>
+												<li class="mbs">
+													<span class="small-text">
+														<div class="nm">20' Container {{broker.price | currency}} (2)</div>
+												
+													</span>
+												</li>
+												<li>
+													<span class="small-text">
+														<div class="nm">40' Container {{broker.price40 | currency}} (1)</div>
+														
+													</span>
+												</li>
+
+											</ul>
+										</div>
+										<div class="grid-6">
+											<div class="grid-12 mbs">
+												<span class="small-text subtle-text">Transit Time</span>
+												<h4 class="">29 days</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="grid-12 well hide">
+									<h4 class="mbs">Select your onboarding time</h4>
+								
+									<div class="grid-12">
+										<div class="grid-6">
+											<div class="fancy checkbox">
+												<input type="radio" name="onboarding" id="{{broker.name}}fastOnboarding">
+												<label for="{{broker.name}}fastOnboarding">
+													<p>Fast Onboarding</p>
+													<p class="small-text">0-14 Days</p>
+													<h4>+ $35.00</h4>
+												</label>
+											</div>
+										</div>
+										<div class="grid-6">
+											<div class="fancy checkbox">
+												<input type="radio" name="onboarding" id="{{broker.name}}normalOnboarding">
+												<label for="{{broker.name}}normalOnboarding">
+													<p>Normal Onboarding</p>
+													<p class="small-text">14+ Days</p>
+													<h4>+ $0.00</h4>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="grid-12 well">
+									<h4 class="mbs">Importer Reviews for {{broker.name}}</h4>
+									<div class="grid-12 mbs">
+										<div class="grid-4">
+											Overall
+										</div>
+										<div class="grid-8">
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="subtle-text star"></i>
+											<span class="small-text text-has-icon success-text">
+												<i class="thumb-up mrs"></i> Awesome
+											</span>
+										</div>
+									</div>
+									<div class="grid-12 mbs">
+										<div class="grid-4">
+											Customer Service
+										</div>
+										<div class="grid-8">
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="subtle-text star"></i>
+										</div>
+									</div>
+									<div class="grid-12 mbs">
+										<div class="grid-4">
+											Timely Arrivals
+										</div>
+										<div class="grid-8">
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="subtle-text star"></i>
+										</div>
+									</div>
+									<div class="grid-12 mbs">
+										<div class="grid-4">
+											Communication
+										</div>
+										<div class="grid-8">
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="star gold"></i>
+											<i class="subtle-text star"></i>
+										</div>
+									</div>
+									<div class="grid-12 mbs">
+										<a href=''>Read reviews &rarr;</a>
+									</div>
+								</div>
+							</div>
+							<div class="card-content">
+								<button class="button primary" ng-click="signIn = 'openSignIn'">Book a Shipment</button>
+								<button class="button">Keep looking</button>
+							</div>
+							<div class="lightbox one" ng-class='{"open":signIn == "openSignIn"}'>
+								<div class="modal">
+									<div class="card">
+										<div class="card-header">
+											<h2>Sign in to book your shipment</h2>
+											<a href='' class="close">&times;</a>
+										</div>
+										<div class="card-content">
+											<div class="grid-12 well">
+												<div class="grid-12">
+													<div class="input-group has-icon">
+														<label>Email Address</label>
+														<i class="email"></i>
+														<input type="text">
+													</div>
+													<div class="input-group has-icon">
+														<label>Password</label>
+														<i class="lock"></i>
+														<input type="password">
+													</div>
+												</div>
+												<div class="grid-12">
+													<a href=''>I'm having trouble signing in.</a>
+												</div>
+											</div>
+										</div>
+										<div class="card-content">
+											<a href='orders.html' class="primary button">Sign in</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="lightbox one" ng-class='{"open":orderStage=="confirm"}'>
+			<div class="modal">
+				<div class="card">
+					<div class="card-header">
+						<h2>Confirm your order</h2>
+						<a href='' class="close">&times;</a>
+					</div>
+					<div class="card-content">
+						<h6 class="subtle-text small-text">Total</h6>
+						<span class="large-text">$1,200.00</span>
+					</div>
+					<div class="card-content">
+						<ul class="spaced">
+							<li>
+								<h3 class="subtle-text small-text">Origination</h3>
+								<span>Laem Chabang, Thailand</span>
+							</li>
+							<li>
+								<h3 class="subtle-text small-text">Destination</h3>
+								<span>San Pedro, US</span>
+							</li>
+							<li>
+								<h3 class="subtle-text small-text">Commodity</h3>
+								
+								<div ng-repeat="commodity in commodities"><span>{{commodity.name}}</span></div>
+								<div ng-show="commodities.length==0"><span>-</span></div>
+								
+								
+							</li>
+							<li>
+								<h3 class="subtle-text small-text">Container Load</h3>
+								<span ng-show="containerLoad=='fcl'">Full Container Load</span>
+								<span ng-show="containerLoad=='lcl'">Less than Container Load</span>
+								<span ng-show="containerLoad=='none'">-</span>
+							</li>
+							<li>
+								<h3 class="subtle-text small-text">Container Type</h3>
+								<div ng-show="standard20==true"><span>20' Standard ({{standard20Num}})</span></div>
+								<div ng-show="standard40==true"><span>40' Standard ({{standard40Num}})</span></div>
+								
+								<div ng-show="highcube40=='open'"><span>40' High Cube ({{highCubeNum}})</span></div>
+								<span ng-hide="standard20==true || standard40==true || highcube40=='open'">-</span>
+							</li>
+							
+							<li>
+								<h3 class="subtle-text small-text">Hazardous Materials</h3>
+								<span ng-show="hasHazMats=='yes'">Yes</span>
+								<span ng-show="hasHazMats=='no'">No</span>
+							</li>
+						</ul>
+					</div>
+					<div class="card-content">
+						<a href='orders.html' class="button primary">Book Shipment</a>
+						<button class="button">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
