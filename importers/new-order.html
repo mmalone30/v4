@@ -213,44 +213,50 @@
 							<h2>Which containers do you need?</h2>
 						</div>
 						<div class="grid-12 mbl">
-							<div class="grid-12 container-select" ng-class='{"active":standard20}' ng-click="standard20=true">
+							<div class="grid-12 container-select" ng-class='{"active":standard20==true}'>
 								<div class="grid-3">
 									<img src="../img/20standard.png">
 								</div>
 								<div class="grid-9">
 									<h6>20' Standard</h6>
-									<span class="small-text">Description of this container.</span>
+									<p class="nm small-text">Description of this container.</p>
 									<div class="input-group" ng-show="standard20==true">
 										<label>How many do you need?</label>
-										<input class="small" type="text" ng-model="standard20Num"><a href='' ng-click="standard20=false">Cancel</a>
+										<input class="small" type="text" ng-model="standard20Num">
+										
 									</div>
+									<a href='' ng-click="standard20 = !standard20">{{standard20 ? "Cancel" : "Add"}}</a>
 								</div>
 							</div>
-							<div class="grid-12 container-select" ng-class='{"active":standard40}' ng-click="standard40=true">
+							<div class="grid-12 container-select" ng-class='{"active":standard40}'>
 								<div class="grid-3">
 									<img src="../img/40standard.png">
 								</div>
 								<div class="grid-9">
 									<h6>40' Standard</h6>
-									<span class="small-text">Description of this container.</span>
+									<p class="nm small-text">Description of this container.</p>
 									<div class="input-group" ng-show="standard40==true">
 										<label>How many do you need?</label>
-										<input class="small" type="text" ng-model="standard40Num"><a href='' ng-click="standard40=false">Cancel</a>
+										<input class="small" type="text" ng-model="standard40Num">
+
 									</div>
+									<a href='' ng-click="standard40 = !standard40">{{standard40 ? "Cancel" : "Add"}}</a>
 								</div>
 							</div>
-							<div class="grid-12 container-select" ng-class='{"active":highcube40=="open"}' ng-click="highcube40='open'">
+							<div class="grid-12 container-select" ng-class='{"active":highcube40=="open"}'>
 								<div class="grid-12">
 									<div class="grid-3">
 										<img src="../img/40highcube.png">
 									</div>
 									<div class="grid-9">
 										<h6>40' High Cube</h6>
-										<span class="small-text">Description of this container.</span>
-										<div class="input-group" ng-show="highcube40=='open'">
+										<p class="nm small-text">Description of this container.</p>
+										<div class="input-group" ng-show="highcube40==true">
 											<label>How many do you need?</label>
-											<input class="small" type="text" ng-model="highCubeNum"><a href='' ng-click="highcube40='close'">Cancel</a>
+											<input class="small" type="text" ng-model="highCubeNum">
+
 										</div>
+										<a href='' ng-click="highcube40=!highcube40">{{highcube40 ? "Cancel" : "Add"}}</a>
 									</div>
 								</div>
 							</div>
