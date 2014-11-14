@@ -1488,11 +1488,6 @@ body {
     background: #fbfcb6; }
   100% {
     background: transparent; } }
-.highlight {
-  -webkit-animation: highlight ease-in-out 2000ms;
-  -moz-animation: highlight ease-in-out 2000ms;
-  animation: highlight ease-in-out 2000ms; }
-
 .card.scrolly {
   overflow: auto; }
   .card.scrolly table {
@@ -1507,6 +1502,11 @@ body {
         white-space: normal; }
       .card.scrolly table tbody td .card p {
         white-space: normal; }
+
+.highlight {
+  -webkit-animation: highlight ease-in-out 2000ms;
+  -moz-animation: highlight ease-in-out 2000ms;
+  animation: highlight ease-in-out 2000ms; }
 
 /***********************************************
 

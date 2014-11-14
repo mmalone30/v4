@@ -916,9 +916,7 @@ body {
 	}
 }
 
-.highlight {
-	@include animation(highlight ease-in-out 2000ms);
-}
+
 
 .card.scrolly {
 	overflow:auto;
@@ -945,4 +943,7 @@ body {
 			}
 		}
 	}
+}
+.highlight {
+	@include animation(highlight ease-in-out 2000ms);
 }
