@@ -43,6 +43,12 @@
 							<h3 class="">Destination <a href=''>Edit</a></h3>
 							<span>San Pedro, US</span>
 						</li>
+						<li ng-class='{"active":orderStage=="containerLoad"}'>
+							<h3 class="">Container Load <a href='' ng-click="orderStage='containerLoad'">Edit</a></h3>
+							<span ng-show="containerLoad=='fcl'">Full Container Load</span>
+							<span ng-show="containerLoad=='lcl'">Less than Container Load</span>
+							<span ng-show="containerLoad=='none'">-</span>
+						</li>
 						<li ng-class='{"active":orderStage=="commodity"}'>
 							<h3 class="">Commodity <a href='' ng-click="orderStage='commodity'">Edit</a></h3>
 							
@@ -51,13 +57,8 @@
 							
 							
 						</li>
-						<li ng-class='{"active":orderStage=="containerLoad"}'>
-							<h3 class="">Container Load <a href='' ng-click="orderStage='containerLoad'">Edit</a></h3>
-							<span ng-show="containerLoad=='fcl'">Full Container Load</span>
-							<span ng-show="containerLoad=='lcl'">Less than Container Load</span>
-							<span ng-show="containerLoad=='none'">-</span>
-						</li>
-						<li  ng-class='{"active":orderStage=="containerType"}'>
+						
+						<li ng-class='{"active":orderStage=="containerType"}'>
 							<h3 class="">Container Type <a href='' ng-click="orderStage='containerType'">Edit</a></h3>
 							<div ng-show="standard20==true"><span>20' Standard ({{standard20Num}})</span></div>
 							<div ng-show="standard40==true"><span>40' Standard ({{standard40Num}})</span></div>
@@ -65,10 +66,9 @@
 							<div ng-show="highcube40=='open'"><span>40' High Cube ({{highCubeNum}})</span></div>
 							<span ng-hide="standard20==true || standard40==true || highcube40=='open'">-</span>
 						</li>
-						<li ng-class='{"active":orderStage=="loadTime"}'>
-							<h3>Load Time <a href='' ng-click="orderStage='loadTime'">Edit</a></h3>
-							<span ng-show="shipSpeed=='normal'">Normal (14+ Days)</span>
-							<span ng-show="shipSpeed=='fast'">Fast (1-14 Days)</span>
+						<li class="" ng-class='{"active":orderStage=="loadTime"}'>
+							<h3>Pickup Date<a href='' ng-click="orderStage='loadTime'">Edit</a></h3>
+							<span>-</span>
 						</li>
 						<li  ng-class='{"active":orderStage=="hazMats"}'>
 							<h3 class="">Hazardous Materials <a href='' ng-click="orderStage='hazMats'">Edit</a></h3>
@@ -100,7 +100,7 @@
 
 						</div>
 						<div class="grid-12">
-							<button class="button primary" ng-click="orderStage='containerLoad'">Save &amp; Continue</button>
+							<button class="button primary" ng-click="orderStage='containerType'">Save &amp; Continue</button>
 							<button class="button">Cancel</button>
 						</div>
 					</div>
@@ -114,7 +114,7 @@
 									<input type="radio" name="containerLoad" id="fcl" ng-model="containerLoad" value="fcl">
 									<label for="fcl">
 										Full Container Load
-										<div class="subtle-text">Description of full container load.</div>
+										<div class="subtle-text">Entire content of container is intended for one consignee.</div>
 									</label>
 									
 								</div>
@@ -127,12 +127,12 @@
 										</div>
 										<div class="well" ng-show="shipmentDelivered=='door'">
 											<div class="input-group">
-												<label>City of Loading</label>
-												<input type="text">
+												<label>City or Port of Loading</label>
+												<input type="text" value="Laem Chabang, Thailand">
 											</div>
 											<div class="input-group">
 												<label>Final Destination</label>
-												<input type="text">
+												<input type="text" placeholder="City or Zipcode">
 											</div>
 										</div>
 										<div class="checkbox">
@@ -149,7 +149,7 @@
 									<input type="radio" name="containerLoad" id="lcl" ng-model="containerLoad" value="lcl">
 									<label for="lcl">
 										Less than Container Load
-										<div class="subtle-text">Description of less than container load.</div>
+										<div class="subtle-text">Shipment does not require full capacity of container. Entire content of container is intended for multiple consignees.</div>
 									</label>
 									
 								</div>
@@ -157,10 +157,10 @@
 									<div class="card-content">
 										<div class="grid-12 input-group">
 											<div class="grid-3">
-												<label>City of Loading</label>
+												<label>City or Port of Loading</label>
 											</div>
 											<div class="grid-9">
-												<input type="text">
+												<input type="text" value="Laem Chabang, Thailand">
 											</div>
 										</div>
 										<div class="grid-12 input-group">
@@ -168,7 +168,7 @@
 												<label>Final Destination</label>
 											</div>
 											<div class="grid-9">
-												<input type="text">
+												<input type="text" placeholder="City or Zipcode">
 											</div>
 										</div>
 										<div class="grid-12 input-group">
@@ -180,8 +180,8 @@
 											</div>
 											<div class="grid-3">
 												<select>
-													<option>lbs.</option>
-													<option>kl.</option>
+													<option>lb.</option>
+													<option>kg.</option>
 												</select>
 											</div>
 										</div>
@@ -195,7 +195,8 @@
 											<div class="grid-3">
 												<select>
 													<option>Cubic ft.</option>
-													<option>Cubic meters.</option>
+													<option>Cubic in.</option>
+													<option>Cubic meters</option>
 												</select>
 											</div>
 										</div>
@@ -204,7 +205,7 @@
 							</div>
 						</div>
 						<div class="grid-12">
-							<button class="primary button" ng-click="orderStage='containerType'">Save &amp; Continue</button>
+							<button class="primary button" ng-click="orderStage='commodity'">Save &amp; Continue</button>
 							<button class="button">Cancel</button>
 						</div>
 					</div>
@@ -268,23 +269,11 @@
 					</div>
 					<div class="container" ng-show="orderStage=='loadTime'">
 						<div class="page-title">
-							<h2>When do you want your containers loaded onto the vessel?</h2>
+							<h2>When is shipment available for pickup?</h2>
 						</div>
 						<div class="grid-12 input-group">
-							<div class="checkbox">
-								<input type="radio" id="fast" name="shipspeed" ng-model="shipSpeed" value="fast">
-								<label for="fast">
-									In the next 14 days
-									
-								</label>
-							</div>
-							<div class="checkbox">
-								<input type="radio" id="normal" name="shipspeed" ng-model="shipSpeed" value="normal">
-								<label for="normal">
-									After 14 days
-									
-								</label>
-							</div>
+							<label>Pick a date</label>
+							<input type="text" placeholder="Datepicker">
 							
 						</div>
 						<div class="grid-12">
@@ -332,7 +321,7 @@
 								Your Best Match
 								
 							</h2>
-							<div class="filters">
+							<div class="hide filters">
 								<ul>
 									<li>
 										<a href='' class="active">Best Price</a>

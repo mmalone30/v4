@@ -553,7 +553,7 @@ function ShipSeedCtrl($scope) {
 
 	$scope.containerLoad = 'none';
 
-	$scope.orderStage = 'commodity';
+	$scope.orderStage = 'containerLoad';
 
 	$scope.brokerStage = 'containerLoad';
 
@@ -567,7 +567,7 @@ function ShipSeedCtrl($scope) {
 		}
 	];
 
-
+	$scope.FCLtype = "port";
 
 	$scope.loads = [
 		{
@@ -587,6 +587,8 @@ function ShipSeedCtrl($scope) {
 	$scope.containerTypeModifier = [];
 
 	$scope.hazardousMaterialModifiers = [];
+
+	$scope.radiusModifiers = [];
 
 	$scope.newRoutes = [];
 

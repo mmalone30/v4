@@ -86,10 +86,20 @@
 									<div class="filters mls">
 										<ul>
 											<li>
-												<a href='' class="active">Port-to-Port</a>
+												<a href='' ng-click="FCLtype='port'" ng-class='{"active":FCLtype=="port"}' class="active">Port-to-Port</a>
 											</li>
 											<li>
-												<a href='' class="">Door-to-Door</a>
+												<a href='' ng-click="FCLtype='door'" ng-class='{"active":FCLtype=="door"}' class="">Door-to-Door</a>
+											</li>
+											<li ng-show="FCLtype=='door'">
+												<label>Radius Modifier</label>
+												<select class="">
+													<option>1-10 miles</option>
+													<option>10-25 miles</option>
+													<option>25-50 miles</option>
+													<option>...</option>
+												</select>
+												
 											</li>
 										</ul>
 									</div>
@@ -593,6 +603,7 @@
 											</li>
 										</ul>
 									</div>
+
 								</div>
 								<table class="zebra">
 									<thead>
@@ -646,6 +657,37 @@
 																		<label>Base Price per cu. ft.</label>
 																		<input type="number" ng-model="item.price20volume">
 																	</div>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Door-to-Door Radius Modifier</label>
+																	<div class="grid-12 well" ng-show="radiusModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any radius modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in radiusModifiers">
+																		<div class="grid-2">
+																			<input type="number" min="1" value="5">
+																		</div>
+																		<span>mile radius</span>
+																		<div class="grid-4">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																		<div class="grid-1 alignright">
+																			<a href='' ng-click="radiusModifiers.pop({})"><strong>&times;</strong></a>
+																		</div>
+																	</div>
+																	<a href='' ng-click="radiusModifiers.push({})"><i class="plus"></i> Add Radius Modifier</a>
 																</div>
 																<div class="grid-12 input-group mbl">
 																	<label>Ship Date Modifiers</label>
@@ -834,7 +876,7 @@
 																<a href='' class="close" ng-click="item.viewModifiers40 = !item.viewModifiers40">&times;</a>
 															</div>
 															<div class="card-content">
-																<span class="note-text">20' Standard, Less than Container Load, Port-to-Port</span>
+																<span class="note-text">20' Standard, Less than Container Load</span>
 															</div>
 															<div class="card-content">
 																<div class="grid-12 input-group mbl">
@@ -846,6 +888,37 @@
 																		<label>Base Price per cu. ft.</label>
 																		<input type="number" ng-model="item.price40volume">
 																	</div>
+																</div>
+																<div class="grid-12 input-group mbl">
+																	<label>Door-to-Door Radius Modifier</label>
+																	<div class="grid-12 well" ng-show="radiusModifiers.length==0">
+																		<span class="subtle-text">You haven't listed any radius modifiers.</span>
+																	</div>
+																	<div class="grid-12 well modifiers" ng-repeat="item in radiusModifiers">
+																		<div class="grid-2">
+																			<input type="number" min="1" value="5">
+																		</div>
+																		<span>mile radius</span>
+																		<div class="grid-4">
+																			<select>
+																				<option>Increases cost per container</option>
+																				<option>Decreases cost per container</option>
+																			</select>
+																		</div>
+																		<div class="grid-2">
+																			<input type="number" min="0" value="0">
+																		</div>
+																		<div class="grid-2">
+																			<select>
+																				<option>%</option>
+																				<option>dollars (USD)</option>
+																			</select>
+																		</div>
+																		<div class="grid-1 alignright">
+																			<a href='' ng-click="radiusModifiers.pop({})"><strong>&times;</strong></a>
+																		</div>
+																	</div>
+																	<a href='' ng-click="radiusModifiers.push({})"><i class="plus"></i> Add Radius Modifier</a>
 																</div>
 																<div class="grid-12 input-group mbl">
 																	<label>Ship Date Modifiers</label>
