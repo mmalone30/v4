@@ -83,7 +83,7 @@
 									</div>
 									<div class="grid-9">
 										<div class="typeahead-wrapper">
-											<input type="text" value="San Pedro, US" placeholder="Port of Destination">
+											<input type="text" value="Los Angeles, US" placeholder="Port of Destination">
 											<ul class="hide typeahead-list" ng-hide="!destinationText || hasDestination">
 												<li ng-repeat="port in ports | filter:destinationText | limitTo:8">
 													<a href='' ng-click="destinationSelected(port)">{{port.name}}</a>

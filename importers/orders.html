@@ -22,7 +22,10 @@
 				<nav class="main-nav">
 					<ul>
 						<li>
-							<a href=''>Orders</a>
+							<a class="active" href=''>Orders</a>
+						</li>
+						<li>
+							<a href='shippers.html'>Shippers</a>
 						</li>
 						<li>
 							<a href=''>Messages</a>
@@ -123,7 +126,7 @@
 								<div class="order-info">
 									<span class="subtle-text">Full Container Load, Port-to-Port &middot; 28 days in transit</span>
 								</div>
-								<div class="text-has-icon mts">
+								<div class="hide text-has-icon mts">
 									<i class="attention info-text mrs"></i>
 									<a href='' class="mrs">Enter your shipper info</a> for your logistics provider.
 								</div>
@@ -134,7 +137,7 @@
 				
 			</div>
 		</div>
-		<div class="lightbox one" ng-class='{"open":showBroker}'>
+		<div class="lightbox one">
 			<div class="modal">
 				<div class="card">
 					<div class="card-header">
@@ -172,14 +175,24 @@
 					</div>
 					<div class="card-content">
 						<h6>Next:</h6>
-						<a href=''>Enter your shipper info</a> for your logistics service provider.
+						<a href='new-shipper.html'>Enter your shipper info</a> for your logistics service provider.
 					</div>
 					<div class="card-content">
-						<button class="button primary">Enter Shipper Info</button>
+						<a href='new-shipper.html' class="button primary">Enter Shipper Info</a>
 
 					</div>
 				</div>
 			</div>
 		</div>
 	</body>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+		if(window.location.hash == "#new-order") {
+			setTimeout(function() {
+				$(".lightbox").addClass("open");
+			}, 500)
+			
+			
+		}
+	</script>
 </html>

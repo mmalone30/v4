@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+<html ng-app>
+	<head> 
+		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>ShipSeed</title> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="../js/shipseed.js"></script>
+	</head> 
+	<body ng-controller="ShipSeedCtrl"> 
+		<div class="main-header">
+			<h1>
+				<a href=''>ShipSeed</a>
+			</h1>
+			<div class="search">
+				<a href=''><i class="search-icon"></i> Find Brokers</a>
+			</div>
+			<nav class="main-nav">
+				<ul>
+					<li>
+						<a href='orders.html'>Orders</a>
+					</li>
+					<li>
+						<a class="active" href=''>Shippers</a>
+					</li>
+					<li>
+						<a href=''>Messages</a>
+					</li>
+					<li>
+						<a href=''>Documents</a>
+					</li>
+					<li>
+						<a href=''>Johnny</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="main-content">
+			<div class="flash close">Shipper saved</div>
+			<div class="container">
+				<div class="grid-12 page-title">
+					<h2>
+						Shippers
+					</h2>
+					<div class="filters"></div>
+					<a href='new-shipper.html' class="primary button">
+						<i class="plus"></i>
+						New Shipper
+					</a>
+				</div>
+				<div class="grid-12">
+					<div class="grid-4">
+						<div class="card">
+							<div class="card-header">
+								<h2>Acme Food Industries</h2>
+							</div>
+							<div class="card-content">
+								<ul>
+									<li>Jeffrey Stone</li>
+									<li>(888) 333-8971</li>
+								</ul>
+							</div>
+							<div class="card-content">
+								<button class="small button">View Details</button>
+							</div>
+						</div>
+					</div>
+					<div class="grid-4">
+						<div class="card">
+							<div class="card-header">
+								<h2>South Asian Transit Co.</h2>
+							</div>
+							<div class="card-content">
+								<ul>
+									<li>Qian Li</li>
+									<li>(888) 121-9182</li>
+								</ul>
+							</div>
+							<div class="card-content">
+								<button class="small button">View Details</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+		if(window.location.hash == "#shipper-created") {
+			setTimeout(function() {
+				$(".flash").removeClass("close");
+			}, 700)
+			setTimeout(function() {
+				$(".flash").addClass("close");
+			}, 3500)
+			
+		}
+	</script>
+</html>

@@ -36,6 +36,18 @@ i.move-right:before {
 	content:"r";
 }
 
+i.glyphicon-chevron-right:before {
+	content:"r";
+}
+
+i.glyphicon-chevron-left:before {
+	content:"r";
+	@include transform(rotate(180deg));
+	display: inline-block;
+	position: relative;
+	top: -4px;
+}
+
 i.email:before {
 	content:"e";
 }

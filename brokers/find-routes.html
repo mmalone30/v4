@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<title>ShipSeed</title> 
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
-		<link href="//get.pictos.cc/fonts/2137/7" rel="stylesheet" type="text/css">
+		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="../css/style.css"> 
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		<script src="../js/shipseed.js"></script>
@@ -25,7 +25,7 @@
 							<a href=''>Create Account</a>
 						</li>
 						<li>
-							<a href=''>Log in</a>
+							<a href='' ng-click="signIn = !signIn">Log in</a>
 						</li>
 					</ul>
 				</nav>
@@ -72,7 +72,39 @@
 
 			</div>
 		</div>
-		
+		<div class="lightbox one" ng-class='{"open":signIn}'>
+			<div class="modal">
+				<div class="card">
+					<div class="card-header">
+						<h2>Log In</h2>
+						<a href='' class="close" ng-click="signIn = !signIn">&times;</a>
+					</div>
+					<div class="card-content">
+						<div class="grid-12 well">
+							<div class="grid-12">
+								<div class="input-group has-icon">
+									<label>Email Address</label>
+									<i class="email"></i>
+									<input type="email">
+								</div>
+								<div class="input-group has-icon">
+									<label>Password</label>
+									<i class="lock"></i>
+									<input type="password">
+								</div>
+							</div>
+							<div class="grid-12">
+								<a href=''>I'm having trouble signing in.</a>
+							</div>
+						</div>
+					</div>
+					<div class="card-content">
+						<a href='routes.html' class="primary button">Log In</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</body> 
 </html>
 		

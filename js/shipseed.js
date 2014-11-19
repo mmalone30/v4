@@ -218,7 +218,7 @@ function ShipSeedCtrl($scope) {
 
 	$scope.myRoutes = [
 		{
-			name:"Laem Chabang - San Pedro",
+			name:"Laem Chabang - Los Angeles",
 			commodity:"Food",
 			price20:1000,
 			price40:0,

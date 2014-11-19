@@ -245,7 +245,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   top: -0.5em; }
 
-.subtle-text {
+.subtle-text, .text-muted {
   color: #8c99a6;
   font-weight: 400; }
 
@@ -297,7 +297,7 @@ table tbody td {
 table.zebra tbody tr:nth-of-type(odd) td {
   background: #f3f5f6; }
 
-.button, .checkbox.fancy label {
+.button, .btn, .checkbox.fancy label {
   background-color: #e2e6e9;
   background-image: -webkit-linear-gradient(#e2e6e9, #cbcfd1);
   background-image: linear-gradient(#e2e6e9, #cbcfd1);
@@ -309,28 +309,40 @@ table.zebra tbody tr:nth-of-type(odd) td {
   border: 1px solid #b4b8ba;
   box-shadow: inset 0 1px 0 #edf0f1;
   color: #34495e; }
-  .button:hover, .checkbox.fancy label:hover {
+  .button:hover, .btn:hover, .checkbox.fancy label:hover {
     cursor: pointer;
     background: #e2e6e9;
     color: #34495e; }
-  .button:focus, .checkbox.fancy label:focus {
+  .button:focus, .btn:focus, .checkbox.fancy label:focus {
     outline: 0; }
-  .button:active, .checkbox.fancy label:active {
+  .button:active, .btn:active, .checkbox.fancy label:active {
     box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.3); }
-  .button.primary, .checkbox.fancy label.primary {
+  .button:disabled, .btn:disabled, .checkbox.fancy label:disabled {
+    background: #cbcfd1;
+    box-shadow: 0 0 0 transparent;
+    border: 1px solid #cbcfd1;
+    color: #8c99a6; }
+    .button:disabled:hover, .btn:disabled:hover, .checkbox.fancy label:disabled:hover {
+      cursor: no-drop; }
+  .button.active, .active.btn, .checkbox.fancy label.active {
+    background: #3498db;
+    color: white;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #2979af; }
+  .button.primary, .primary.btn, .checkbox.fancy label.primary {
     background-color: #3498db;
     background-image: -webkit-linear-gradient(#3498db, #2e88c5);
     background-image: linear-gradient(#3498db, #2e88c5);
     color: white;
     border: 1px solid #2979af;
     box-shadow: inset 0 1px 0 #85c1e9; }
-    .button.primary:hover, .checkbox.fancy label.primary:hover {
+    .button.primary:hover, .primary.btn:hover, .checkbox.fancy label.primary:hover {
       background: #3498db; }
-    .button.primary:active, .checkbox.fancy label.primary:active {
+    .button.primary:active, .primary.btn:active, .checkbox.fancy label.primary:active {
       box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.3); }
-    .button.primary:focus, .checkbox.fancy label.primary:focus {
+    .button.primary:focus, .primary.btn:focus, .checkbox.fancy label.primary:focus {
       outline: 0; }
-  .button.small, .checkbox.fancy label.small {
+  .button.small, .small.btn, .checkbox.fancy label.small {
     font-size: 0.8em;
     padding: 5px 10px; }
 
@@ -679,7 +691,7 @@ body {
       margin: 0;
       max-width: 10em;
       padding: 0.25em; }
-    .main-header .search .button, .main-header .search .checkbox.fancy label, .checkbox.fancy .main-header .search label {
+    .main-header .search .button, .main-header .search .btn, .main-header .search .checkbox.fancy label, .checkbox.fancy .main-header .search label {
       margin-left: 0.5em; }
   .main-header .main-nav ul {
     display: -webkit-box;
@@ -694,6 +706,10 @@ body {
       margin: 1em;
       border-bottom: 2px solid transparent; }
       .main-header .main-nav ul li a:hover {
+        border-bottom: 2px solid #3498db; }
+      .main-header .main-nav ul li a.active {
+        color: #3498db;
+        font-weight: bold;
         border-bottom: 2px solid #3498db; }
 
 .input-group.has-icon {
@@ -762,7 +778,7 @@ body {
       border-radius: 1px; }
     .hero .input-group select {
       margin: 0; }
-    .hero .input-group .button, .hero .input-group .checkbox.fancy label, .checkbox.fancy .hero .input-group label {
+    .hero .input-group .button, .hero .input-group .btn, .hero .input-group .checkbox.fancy label, .checkbox.fancy .hero .input-group label {
       margin-left: 1em; }
   .hero fieldset {
     background: white;
@@ -1032,13 +1048,13 @@ body {
 
 .multi-select-drop {
   position: relative; }
-  .multi-select-drop .button, .multi-select-drop .checkbox.fancy label, .checkbox.fancy .multi-select-drop label {
+  .multi-select-drop .button, .multi-select-drop .btn, .multi-select-drop .checkbox.fancy label, .checkbox.fancy .multi-select-drop label {
     display: block;
     width: 100%;
     text-align: left;
     position: relative;
     padding-right: 2em; }
-    .multi-select-drop .button:after, .multi-select-drop .checkbox.fancy label:after, .checkbox.fancy .multi-select-drop label:after {
+    .multi-select-drop .button:after, .multi-select-drop .btn:after, .multi-select-drop .checkbox.fancy label:after, .checkbox.fancy .multi-select-drop label:after {
       content: "";
       height: 0;
       width: 0;
@@ -1048,7 +1064,7 @@ body {
       position: absolute;
       right: 0.75em;
       top: 1em; }
-    .multi-select-drop .button.primary:after, .multi-select-drop .checkbox.fancy label.primary:after, .checkbox.fancy .multi-select-drop label.primary:after {
+    .multi-select-drop .button.primary:after, .multi-select-drop .primary.btn:after, .multi-select-drop .checkbox.fancy label.primary:after, .checkbox.fancy .multi-select-drop label.primary:after {
       content: "";
       height: 0;
       width: 0;
@@ -1058,7 +1074,7 @@ body {
       position: absolute;
       right: 0.75em;
       top: 1em; }
-    .multi-select-drop .button.small:after, .multi-select-drop .checkbox.fancy label.small:after, .checkbox.fancy .multi-select-drop label.small:after {
+    .multi-select-drop .button.small:after, .multi-select-drop .small.btn:after, .multi-select-drop .checkbox.fancy label.small:after, .checkbox.fancy .multi-select-drop label.small:after {
       content: "";
       height: 0;
       width: 0;
@@ -1314,7 +1330,7 @@ body {
           font-size: 0.5em;
           font-weight: 400;
           margin-left: 1em; }
-      .order-item .order-item-content .status-actions .button, .order-item .order-item-content .status-actions .checkbox.fancy label, .checkbox.fancy .order-item .order-item-content .status-actions label {
+      .order-item .order-item-content .status-actions .button, .order-item .order-item-content .status-actions .btn, .order-item .order-item-content .status-actions .checkbox.fancy label, .checkbox.fancy .order-item .order-item-content .status-actions label {
         margin-left: 1em; }
     .order-item .order-item-content .order-info h4 {
       display: inline-block;
@@ -1369,21 +1385,21 @@ body {
   content: "";
   display: table;
   clear: both; }
-.button-group .button, .button-group .checkbox.fancy label, .checkbox.fancy .button-group label {
+.button-group .button, .button-group .btn, .button-group .checkbox.fancy label, .checkbox.fancy .button-group label {
   float: left;
   margin-left: -1px; }
-  .button-group .button:first-of-type, .button-group .checkbox.fancy label:first-of-type, .checkbox.fancy .button-group label:first-of-type {
+  .button-group .button:first-of-type, .button-group .btn:first-of-type, .button-group .checkbox.fancy label:first-of-type, .checkbox.fancy .button-group label:first-of-type {
     border-radius: 3px 0 0 3px; }
-  .button-group .button:last-of-type, .button-group .checkbox.fancy label:last-of-type, .checkbox.fancy .button-group label:last-of-type {
+  .button-group .button:last-of-type, .button-group .btn:last-of-type, .button-group .checkbox.fancy label:last-of-type, .checkbox.fancy .button-group label:last-of-type {
     border-radius: 0 3px 3px 0; }
-  .button-group .button.active, .button-group .checkbox.fancy label.active, .checkbox.fancy .button-group label.active {
+  .button-group .button.active, .button-group .active.btn, .button-group .checkbox.fancy label.active, .checkbox.fancy .button-group label.active {
     box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.3); }
 
 .broker-info i:before {
   font-size: 2em; }
 
 .flash {
-  background: #569e6f;
+  background: #4fc075;
   color: white;
   opacity: 1;
   border-radius: 3px;
@@ -1508,6 +1524,10 @@ body {
   -moz-animation: highlight ease-in-out 2000ms;
   animation: highlight ease-in-out 2000ms; }
 
+.datepicker table thead th .button, .datepicker table thead th .btn, .datepicker table thead th .checkbox.fancy label, .checkbox.fancy .datepicker table thead th label {
+  width: 100%;
+  display: block; }
+
 /***********************************************
 
 	Icons
@@ -1537,6 +1557,20 @@ i.thumb-up:before {
 
 i.move-right:before {
   content: "r"; }
+
+i.glyphicon-chevron-right:before {
+  content: "r"; }
+
+i.glyphicon-chevron-left:before {
+  content: "r";
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  display: inline-block;
+  position: relative;
+  top: -4px; }
 
 i.email:before {
   content: "e"; }

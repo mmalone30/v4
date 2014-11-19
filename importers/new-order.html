@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html ng-app>
+<html ng-app="ui.bootstrap.demo">
 	<head> 
 		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -8,10 +8,12 @@
 		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="../css/style.css"> 
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 		<script src="../js/shipseed.js"></script>
+		<script src="../js/datepicker.js"></script>
 	</head> 
 	<body ng-controller="ShipSeedCtrl" ng-class='{"hasLightbox":hasLightbox=="up"}'> 
-		<div class="main-wrapper">
+		<div class="main-wrapper" ng-controller="DatepickerDemoCtrl">
 			<div class="main-header">
 				<h1>
 					<a href=''>ShipSeed</a>
@@ -41,7 +43,7 @@
 						</li>
 						<li>
 							<h3 class="">Destination <a href=''>Edit</a></h3>
-							<span>San Pedro, US</span>
+							<span>Los Angeles, US</span>
 						</li>
 						<li ng-class='{"active":orderStage=="containerLoad"}'>
 							<h3 class="">Container Load <a href='' ng-click="orderStage='containerLoad'">Edit</a></h3>
@@ -58,7 +60,7 @@
 							
 						</li>
 						
-						<li ng-class='{"active":orderStage=="containerType"}'>
+						<li ng-show="containerLoad=='fcl'" ng-class='{"active":orderStage=="containerType"}'>
 							<h3 class="">Container Type <a href='' ng-click="orderStage='containerType'">Edit</a></h3>
 							<div ng-show="standard20==true"><span>20' Standard ({{standard20Num}})</span></div>
 							<div ng-show="standard40==true"><span>40' Standard ({{standard40Num}})</span></div>
@@ -68,7 +70,7 @@
 						</li>
 						<li class="" ng-class='{"active":orderStage=="loadTime"}'>
 							<h3>Pickup Date<a href='' ng-click="orderStage='loadTime'">Edit</a></h3>
-							<span>-</span>
+							<span>{{dt | date:'fullDate' }}</span>
 						</li>
 						<li  ng-class='{"active":orderStage=="hazMats"}'>
 							<h3 class="">Hazardous Materials <a href='' ng-click="orderStage='hazMats'">Edit</a></h3>
@@ -100,7 +102,8 @@
 
 						</div>
 						<div class="grid-12">
-							<button class="button primary" ng-click="orderStage='containerType'">Save &amp; Continue</button>
+							<button class="button primary" ng-show="containerLoad=='fcl'" ng-click="orderStage='containerType'">Save &amp; Continue</button>
+							<button class="button primary" ng-show="containerLoad=='lcl'" ng-click="orderStage='loadTime'">Save &amp; Continue</button>
 							<button class="button">Cancel</button>
 						</div>
 					</div>
@@ -209,7 +212,7 @@
 							<button class="button">Cancel</button>
 						</div>
 					</div>
-					<div class="container" ng-show="orderStage=='containerType'">
+					<div class="container" ng-show="orderStage=='containerType' && containerLoad=='fcl'">
 						<div class="page-title">
 							<h2>Which containers do you need?</h2>
 						</div>
@@ -271,10 +274,14 @@
 						<div class="page-title">
 							<h2>When is shipment available for pickup?</h2>
 						</div>
-						<div class="grid-12 input-group">
-							<label>Pick a date</label>
-							<input type="text" placeholder="Datepicker">
+						<div class="card mbl" >
+							<div class="card-header">
+								<h2>Pick a date</h2>
+							</div>
 							
+							<div class="card-content datepicker">
+								<datepicker ng-model="dt" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+							</div>
 						</div>
 						<div class="grid-12">
 							<button class="primary button" ng-click="orderStage='hazMats'">Save &amp; Continue</button>
@@ -517,14 +524,15 @@
 											<ul>
 												<li class="mbs">
 													<span class="small-text subtle-text">Total</span>
-													<h4 class="">{{((broker.price*2) + broker.price40) | currency}}</h4>
+													<h4 class="" ng-show="lclWeight>lclVolume">{{lclWeight*0.9 | currency}}</h4>
+													<h4 class="" ng-show="lclVolume>=lclWeight">{{lclVolume*0.87 | currency}}</h4>
 												</li>
 												<li class="mbs">
 													<span class="small-text">
 														<div class="nm">20' Container</div>
 														<ul>
-															<li>$0.90/lb. ({{lclWeight}} lb. Total)</li>
-															<li>$0.87/ft.<span class="expo">3</span> ({{lclVolume}} ft.<span class="expo">3</span> total)</li>
+															<li ng-show="lclWeight>lclVolume">$0.90/lb. ({{lclWeight}} lb. Total)</li>
+															<li ng-show="lclVolume>=lclWeight">$0.87/ft.<span class="expo">3</span> ({{lclVolume}} ft.<span class="expo">3</span> total)</li>
 														</ul>
 													</span>
 												</li>
@@ -656,7 +664,7 @@
 											</div>
 										</div>
 										<div class="card-content">
-											<a href='orders.html' class="primary button">Sign in</a>
+											<a href='orders.html#new-order' class="primary button">Sign in</a>
 										</div>
 									</div>
 								</div>
@@ -686,7 +694,7 @@
 							</li>
 							<li>
 								<h3 class="subtle-text small-text">Destination</h3>
-								<span>San Pedro, US</span>
+								<span>Los Angeles, US</span>
 							</li>
 							<li>
 								<h3 class="subtle-text small-text">Commodity</h3>
