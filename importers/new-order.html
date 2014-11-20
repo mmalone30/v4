@@ -66,7 +66,10 @@
 							<div ng-show="standard40==true"><span>40' Standard ({{standard40Num}})</span></div>
 							
 							<div ng-show="highcube40=='open'"><span>40' High Cube ({{highCubeNum}})</span></div>
-							<span ng-hide="standard20==true || standard40==true || highcube40=='open'">-</span>
+							<div ng-show="highcube45==true"><span>45' High Cube ({{highCube45Num}})</span></div>
+							<div ng-show="fridge20==true"><span>20' Refrigerated ({{fridge20Num}})</span></div>
+							<div ng-show="fridge40==true"><span>40' Refrigerated ({{fridge40Num}})</span></div>
+							<span ng-hide="standard20==true || standard40==true || highcube40=='open' || highcube45==true || fridge20==true || fridge40 == true">-</span>
 						</li>
 						<li class="" ng-class='{"active":orderStage=="loadTime"}'>
 							<h3>Pickup Date<a href='' ng-click="orderStage='loadTime'">Edit</a></h3>
@@ -212,7 +215,7 @@
 							<button class="button">Cancel</button>
 						</div>
 					</div>
-					<div class="container" ng-show="orderStage=='containerType' && containerLoad=='fcl'">
+					<div class="full container" ng-show="orderStage=='containerType' && containerLoad=='fcl'">
 						<div class="page-title">
 							<h2>Which containers do you need?</h2>
 						</div>
@@ -220,47 +223,916 @@
 							<div class="grid-12 container-select" ng-class='{"active":standard20==true}'>
 								<div class="grid-3">
 									<img src="../img/20standard.png">
+									<a href='' ng-click="standard20 = !standard20">{{standard20 ? "Cancel" : "Add"}}</a>
 								</div>
 								<div class="grid-9">
 									<h6>20' Standard</h6>
-									<p class="nm small-text">Description of this container.</p>
-									<div class="input-group" ng-show="standard20==true">
-										<label>How many do you need?</label>
-										<input class="small" type="text" ng-model="standard20Num">
+									<span class=" small-text">Captioned units(MGW 30,480 KG) can be coordinated from EMCU 3204073 and EISU 3568118.
+Used for all kinds of general cargo.</span>
+									<div class="grid-12 mts" ng-show="standard20==true">
+										<div class="grid-12 input-group well mbl">
+											<label>How many do you need?</label>
+											<input class="small" type="text" ng-model="standard20Num">
+											
+										</div>
+										<div class="grid-12 mbl">
+											<div class="grid-6">
+												<h4 class="base-text">Exterior</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>Length</th>
+															<th>Width</th>
+															<th>Height</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>20' - 0"</td>
+															<td>8' - 0"</td>
+															<td>8' - 6"</td>
+														</tr>
+														<tr>
+															<td>6.058 m</td>
+															<td>2.438 m</td>
+															<td>2.591 m</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="grid-6">
+												<h4 class="base-text">Interior</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>Length</th>
+															<th>Width</th>
+															<th>Height</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>19' - 4 13/16"</td>
+															<td>7' - 8 19/32"</td>
+															<td>7' - 9 57/64"</td>
+														</tr>
+														<tr>
+															<td>5.898 m</td>
+															<td>2.352 m</td>
+															<td>2.385 m</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										
+										<div class="grid-12 mbl">
+											<div class="grid-6">
+												<h4 class="base-text">Weight</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>MGW</th>
+															<th>TARE</th>
+															<th>NET</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>52,910 lb</td>
+															<td>5,140 lb</td>
+															<td>47,770 lb</td>
+														</tr>
+														<tr>
+															<td>67,200 lb</td>
+															<td>5,290 lb</td>
+															<td>61,910 lb</td>
+														</tr>
+														<tr>
+															<td>24,000 kg</td>
+															<td>2,330 kg</td>
+															<td>21,670 kg</td>
+														</tr>
+														<tr>
+															<td>30,480 kg</td>
+															<td>2,400 kg</td>
+															<td>28,080 kg</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="grid-6">
+												<h4 class="base-text">Door Opening</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>Width</th>
+															<th>Height</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>7' - 8 1/8"</td>
+															<td>7' - 5 3/4"</td>
+															
+														</tr>
+														<tr>
+															<td>2.343 m</td>
+															<td>2.280 m</td>
+														</tr>
+													
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="grid-12">
+											<div class="grid-6">
+												<h4 class="base-text">Volume</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>Cu. M</th>
+															<th>Cu. Ft</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>33.1</td>
+															<td>1,169</td>
+															
+														</tr>
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
 										
 									</div>
-									<a href='' ng-click="standard20 = !standard20">{{standard20 ? "Cancel" : "Add"}}</a>
 								</div>
 							</div>
 							<div class="grid-12 container-select" ng-class='{"active":standard40}'>
 								<div class="grid-3">
 									<img src="../img/40standard.png">
+									<a href='' ng-click="standard40 = !standard40">{{standard40 ? "Cancel" : "Add"}}</a>
 								</div>
 								<div class="grid-9">
 									<h6>40' Standard</h6>
-									<p class="nm small-text">Description of this container.</p>
-									<div class="input-group" ng-show="standard40==true">
-										<label>How many do you need?</label>
-										<input class="small" type="text" ng-model="standard40Num">
+									<p class="nm small-text">Used for all kinds of general cargo.</p>
+									<div class="grid-12" ng-show="standard40==true">
+										<div class="grid-12 well input-group" ng-show="standard40==true">
+											<label>How many do you need?</label>
+											<input class="small" type="text" ng-model="standard40Num">
 
+										</div>
+										<div class="grid-12 mbl">
+											<div class="grid-6">
+												<h4 class="base-text">Exterior</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>Length</th>
+															<th>Width</th>
+															<th>Height</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>40' - 0"</td>
+															<td>8' - 0"</td>
+															<td>8' - 6"</td>
+														</tr>
+														<tr>
+															<td>12.192 m</td>
+															<td>2.438 m</td>
+															<td>2.591 m</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="grid-6">
+												<h4 class="base-text">Interior</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>Length</th>
+															<th>Width</th>
+															<th>Height</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>39' - 5 45/64"</td>
+															<td>7' - 8 19/32"</td>
+															<td>7' - 9 57/64"</td>
+														</tr>
+														<tr>
+															<td>12.032 m</td>
+															<td>2.352 m</td>
+															<td>2.385 m</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										
+										<div class="grid-12 mbl">
+											<div class="grid-6">
+												<h4 class="base-text">Weight</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>MGW</th>
+															<th>TARE</th>
+															<th>NET</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>67,200 lb</td>
+															<td>8,820 lb</td>
+															<td>58,380 lb</td>
+														</tr>
+														
+														<tr>
+															<td>30,480 kg</td>
+															<td>4,000 kg</td>
+															<td>26,480 kg</td>
+														</tr>
+														
+													</tbody>
+												</table>
+											</div>
+											<div class="grid-6">
+												<h4 class="base-text">Door Opening</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>Width</th>
+															<th>Height</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>7' - 8 1/8"</td>
+															<td>7' - 5 3/4"</td>
+															
+														</tr>
+														<tr>
+															<td>2.343 m</td>
+															<td>2.280 m</td>
+														</tr>
+													
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="grid-12">
+											<div class="grid-6">
+												<h4 class="base-text">Volume</h4>
+												<table class="small-text bordered">
+													<thead>
+														<tr>
+															<th>Cu. M</th>
+															<th>Cu. Ft</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>67.5</td>
+															<td>2,385</td>
+															
+														</tr>
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
 									</div>
-									<a href='' ng-click="standard40 = !standard40">{{standard40 ? "Cancel" : "Add"}}</a>
 								</div>
 							</div>
-							<div class="grid-12 container-select" ng-class='{"active":highcube40=="open"}'>
+							<div class="grid-12 container-select" ng-class='{"active":highcube40}'>
 								<div class="grid-12">
 									<div class="grid-3">
 										<img src="../img/40highcube.png">
+										<a href='' ng-click="highcube40=!highcube40">{{highcube40 ? "Cancel" : "Add"}}</a>
 									</div>
 									<div class="grid-9">
 										<h6>40' High Cube</h6>
-										<p class="nm small-text">Description of this container.</p>
-										<div class="input-group" ng-show="highcube40==true">
-											<label>How many do you need?</label>
-											<input class="small" type="text" ng-model="highCubeNum">
+										<p class="nm small-text">Used for all kinds of general cargo.</p>
+										<div class="grid-12" ng-show="highcube40==true">
+											<div class="grid-12 well mbl input-group">
+												<label>How many do you need?</label>
+												<input class="small" type="text" ng-model="highCubeNum">
 
+											</div>
+											<div class="grid-12 mbl">
+												<div class="grid-6">
+													<h4 class="base-text">Exterior</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Length</th>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>40' - 0"</td>
+																<td>8' - 0"</td>
+																<td>8' - 6"</td>
+															</tr>
+															<tr>
+																<td>12.192 m</td>
+																<td>2.438 m</td>
+																<td>2.591 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Interior</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Length</th>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>39' - 5 45/64"</td>
+																<td>7' - 8 19/32"</td>
+																<td>7' - 9 57/64"</td>
+															</tr>
+															<tr>
+																<td>12.032 m</td>
+																<td>2.352 m</td>
+																<td>2.385 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											
+											<div class="grid-12 mbl">
+												<div class="grid-6">
+													<h4 class="base-text">Weight</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>MGW</th>
+																<th>TARE</th>
+																<th>NET</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>67,200 lb</td>
+																<td>8,820 lb</td>
+																<td>58,380 lb</td>
+															</tr>
+															
+															<tr>
+																<td>30,480 kg</td>
+																<td>4,000 kg</td>
+																<td>26,480 kg</td>
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Door Opening</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Width</th>
+																<th>Height</th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>7' - 8 1/8"</td>
+																<td>7' - 5 3/4"</td>
+																
+															</tr>
+															<tr>
+																<td>2.343 m</td>
+																<td>2.280 m</td>
+															</tr>
+														
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="grid-12">
+												<div class="grid-6">
+													<h4 class="base-text">Volume</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Cu. M</th>
+																<th>Cu. Ft</th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>67.5</td>
+																<td>2,385</td>
+																
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+											</div>
 										</div>
-										<a href='' ng-click="highcube40=!highcube40">{{highcube40 ? "Cancel" : "Add"}}</a>
+									</div>
+								</div>
+							</div>
+							<div class="grid-12 container-select" ng-class='{"active":highcube45}'>
+								<div class="grid-12">
+									<div class="grid-3">
+										<img src="../img/40highcube.png">
+										<a href='' ng-click="highcube45=!highcube45">{{highcube45 ? "Cancel" : "Add"}}</a>
+									</div>
+									<div class="grid-9">
+										<h6>45' High Cube</h6>
+										<p class="nm small-text">Used for all kinds of general cargo.</p>
+										<div class="grid-12" ng-show="highcube45==true">
+											<div class="grid-12 well mbl input-group">
+												<label>How many do you need?</label>
+												<input class="small" type="text" ng-model="highCube45Num">
+
+											</div>
+											<div class="grid-12 mbl">
+												<div class="grid-6">
+													<h4 class="base-text">Exterior</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Length</th>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>45' - 0"</td>
+																<td>8' - 0"</td>
+																<td>9' - 6"</td>
+															</tr>
+															<tr>
+																<td>13.716 m</td>
+																<td>2.438 m</td>
+																<td>2.896 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Interior</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Length</th>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>44' - 5 7/10"</td>
+																<td>7' - 8 19/32"</td>
+																<td>8' - 10 17/64"</td>
+															</tr>
+															<tr>
+																<td>13.556 m</td>
+																<td>2.352 m</td>
+																<td>2.698 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											
+											<div class="grid-12 mbl">
+												<div class="grid-6">
+													<h4 class="base-text">Weight</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>MGW</th>
+																<th>TARE</th>
+																<th>NET</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>67,200 lb</td>
+																<td>10,580 lb</td>
+																<td>56,620 lb</td>
+															</tr>
+															
+															<tr>
+																<td>30,480 kg</td>
+																<td>4,800 kg</td>
+																<td>25,680 kg</td>
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Door Opening</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Width</th>
+																<th>Height</th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>7' - 8 1/8"</td>
+																<td>8' - 5 3/4"</td>
+																
+															</tr>
+															<tr>
+																<td>2.343 m</td>
+																<td>2.585 m</td>
+															</tr>
+														
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="grid-12">
+												<div class="grid-6">
+													<h4 class="base-text">Volume</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Cu. M</th>
+																<th>Cu. Ft</th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>86</td>
+																<td>3,040</td>
+																
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="grid-12 container-select" ng-class='{"active":fridge20}'>
+								<div class="grid-12">
+									<div class="grid-3">
+										<img src="../img/20standard.png">
+										<a href='' ng-click="fridge20=!fridge20">{{highcube45 ? "Cancel" : "Add"}}</a>
+									</div>
+									<div class="grid-9">
+										<h6>20' Refrigerated</h6>
+										<p class="nm small-text">Used for all kinds of general cargo that requires climate control.</p>
+										<div class="grid-12" ng-show="fridge20==true">
+											<div class="grid-12 well mbl input-group">
+												<label>How many do you need?</label>
+												<input class="small" type="text" ng-model="fridge20Num">
+
+											</div>
+											<div class="grid-12 mbl">
+												<div class="grid-6">
+													<h4 class="base-text">Exterior</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Length</th>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>20' - 0"</td>
+																<td>8' - 0"</td>
+																<td>8' - 6"</td>
+															</tr>
+															<tr>
+																<td>6.086 m</td>
+																<td>2.438 m</td>
+																<td>2.591 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Interior</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Length</th>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>18' -  7/32"</td>
+																<td>7' - 6 15/32"</td>
+																<td>7' - 5 39/54"</td>
+															</tr>
+															<tr>
+																<td>5.5 m</td>
+																<td>2.298 m</td>
+																<td>2.276 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											
+											<div class="grid-12 mbl">
+												<div class="grid-6">
+													<h4 class="base-text">Weight</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>MGW</th>
+																<th>TARE</th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>67,180 lb</td>
+																<td>6,700 lb</td>
+															
+															</tr>
+															
+															<tr>
+																<td>30,480 kg</td>
+																<td>3,020 kg</td>
+															
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Door Opening</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>7' - 8 1/8"</td>
+																<td>8' - 5 3/4"</td>
+															</tr>
+															<tr>
+																<td>2.343 m</td>
+																<td>2.585 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="grid-12">
+												<div class="grid-6">
+													<h4 class="base-text">Volume</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Cu. M</th>
+																<th>Cu. Ft</th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>28.8</td>
+																<td>1,016</td>
+																
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Cooling Capacity</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>w(kcal)/C(f)</th>
+																<th>CFM</th>
+																<th>cu.m/hr</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>11,000(9,460)/1.7(35)<br>6,280(5,400)/-18(0)</td>
+																<td>0-106</td>
+																<td>0-180</td>
+															</tr>
+															<tr>
+																<td>10,550(9,073)/2(35)<br>6,150(5,289)/-18(0)</td>
+																<td>0-142</td>
+																<td>0-240</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="grid-12 container-select" ng-class='{"active":fridge40}'>
+								<div class="grid-12">
+									<div class="grid-3">
+										<img src="../img/40standard.png">
+										<a href='' ng-click="fridge40=!fridge40">{{highcube45 ? "Cancel" : "Add"}}</a>
+									</div>
+									<div class="grid-9">
+										<h6>40' Refrigerated</h6>
+										<p class="nm small-text">Used for all kinds of general cargo that requires climate control.</p>
+										<div class="grid-12" ng-show="fridge40==true">
+											<div class="grid-12 well mbl input-group">
+												<label>How many do you need?</label>
+												<input class="small" type="text" ng-model="fridge40Num">
+
+											</div>
+											<div class="grid-12 mbl">
+												<div class="grid-6">
+													<h4 class="base-text">Exterior</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Length</th>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>40' - 0"</td>
+																<td>8' - 0"</td>
+																<td>8' - 6"</td>
+															</tr>
+															<tr>
+																<td>13.086 m</td>
+																<td>2.438 m</td>
+																<td>2.591 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Interior</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Length</th>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>39' -  7/32"</td>
+																<td>7' - 6 15/32"</td>
+																<td>7' - 5 39/54"</td>
+															</tr>
+															<tr>
+																<td>10.5 m</td>
+																<td>2.298 m</td>
+																<td>2.276 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											
+											<div class="grid-12 mbl">
+												<div class="grid-6">
+													<h4 class="base-text">Weight</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>MGW</th>
+																<th>TARE</th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>67,180 lb</td>
+																<td>6,700 lb</td>
+															
+															</tr>
+															
+															<tr>
+																<td>30,480 kg</td>
+																<td>3,020 kg</td>
+															
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Door Opening</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Width</th>
+																<th>Height</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>7' - 8 1/8"</td>
+																<td>8' - 5 3/4"</td>
+															</tr>
+															<tr>
+																<td>2.343 m</td>
+																<td>2.585 m</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="grid-12">
+												<div class="grid-6">
+													<h4 class="base-text">Volume</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>Cu. M</th>
+																<th>Cu. Ft</th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>28.8</td>
+																<td>1,016</td>
+																
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+												<div class="grid-6">
+													<h4 class="base-text">Cooling Capacity</h4>
+													<table class="small-text bordered">
+														<thead>
+															<tr>
+																<th>w(kcal)/C(f)</th>
+																<th>CFM</th>
+																<th>cu.m/hr</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>11,000(9,460)/1.7(35)<br>6,280(5,400)/-18(0)</td>
+																<td>0-106</td>
+																<td>0-180</td>
+															</tr>
+															<tr>
+																<td>10,550(9,073)/2(35)<br>6,150(5,289)/-18(0)</td>
+																<td>0-142</td>
+																<td>0-240</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

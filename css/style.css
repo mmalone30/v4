@@ -249,6 +249,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #8c99a6;
   font-weight: 400; }
 
+.base-text {
+  font-size: 1em; }
+
 .small-text {
   font-size: 0.8em; }
 
@@ -296,6 +299,11 @@ table tbody td {
   padding: 7px; }
 table.zebra tbody tr:nth-of-type(odd) td {
   background: #f3f5f6; }
+table.bordered {
+  border: 1px solid #e2e6e9;
+  border-radius: 3px; }
+  table.bordered thead th {
+    background: #f3f5f6; }
 
 .button, .btn, .checkbox.fancy label {
   background-color: #e2e6e9;

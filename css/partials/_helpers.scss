@@ -32,6 +32,9 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
 }
 
+.base-text {
+	font-size:$base-font-size;
+}
 
 .small-text {
 	font-size:$base-font-size*0.8;
@@ -87,6 +90,15 @@ table {
 				td {
 					background:tint($light-gray, 60%);
 				}
+			}
+		}
+	}
+	&.bordered {
+		border:1px solid $light-gray;
+		border-radius:3px;
+		thead {
+			th {
+				background:tint($light-gray, 60%);
 			}
 		}
 	}
