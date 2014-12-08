@@ -1,18 +1,18 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html ng-app="ui.bootstrap.demo">
-	<head> 
+	<head>
 		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>ShipSeed</title> 
-		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ShipSeed</title>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'>
 		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="../css/style.css"> 
+		<link rel="stylesheet" href="../css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 		<script src="../js/shipseed.js"></script>
 		<script src="../js/datepicker.js"></script>
-	</head> 
-	<body ng-controller="ShipSeedCtrl" ng-class='{"hasLightbox":hasLightbox=="up"}'> 
+	</head>
+	<body ng-controller="ShipSeedCtrl" ng-class='{"hasLightbox":hasLightbox=="up"}'>
 		<div class="main-wrapper" ng-controller="DatepickerDemoCtrl">
 			<div class="main-header">
 				<h1>
@@ -34,9 +34,9 @@
 			</div>
 			<div class="search-content">
 				<div class="sidebar">
-					
+
 					<ul class="mtl">
-						
+
 						<li>
 							<h3 class="">Origination <a href=''>Edit</a></h3>
 							<span>Laem Chabang, Thailand</span>
@@ -53,18 +53,18 @@
 						</li>
 						<li ng-class='{"active":orderStage=="commodity"}'>
 							<h3 class="">Commodity <a href='' ng-click="orderStage='commodity'">Edit</a></h3>
-							
+
 							<div ng-repeat="commodity in commodities"><span>{{commodity.name}}</span></div>
 							<div ng-show="commodities.length==0"><span>-</span></div>
-							
-							
+
+
 						</li>
-						
+
 						<li ng-show="containerLoad=='fcl'" ng-class='{"active":orderStage=="containerType"}'>
 							<h3 class="">Container Type <a href='' ng-click="orderStage='containerType'">Edit</a></h3>
 							<div ng-show="standard20==true"><span>20' Standard ({{standard20Num}})</span></div>
 							<div ng-show="standard40==true"><span>40' Standard ({{standard40Num}})</span></div>
-							
+
 							<div ng-show="highcube40=='open'"><span>40' High Cube ({{highCubeNum}})</span></div>
 							<div ng-show="highcube45==true"><span>45' High Cube ({{highCube45Num}})</span></div>
 							<div ng-show="fridge20==true"><span>20' Refrigerated ({{fridge20Num}})</span></div>
@@ -92,7 +92,7 @@
 						<div class="grid-12 mbl">
 							<div class="grid-12 mbl input-group">
 								<label>Enter a commodity</label>
-								
+
 
 								<div class="grid-12 removable-form" ng-repeat="commodity in commodities">
 									<input type='text' placeholder="Food, electronics, machinery..." ng-model="commodity.name"><a ng-click="commodities.pop({})" href=''>&times;</a>
@@ -122,7 +122,7 @@
 										Full Container Load
 										<div class="subtle-text">Entire content of container is intended for one consignee.</div>
 									</label>
-									
+
 								</div>
 								<div class="card mbl" ng-show="containerLoad=='fcl'" style="margin-left:1.5em;">
 									<div class="card-content">
@@ -145,10 +145,10 @@
 											<input type="radio" name="shipmentDelivered" id="portToPort" ng-model="shipmentDelivered" value="port">
 											<label for="portToPort">Port-to-port</label>
 										</div>
-										
+
 									</div>
 								</div>
-								
+
 							</div>
 							<div class="grid-12">
 								<div class="checkbox">
@@ -157,7 +157,7 @@
 										Less than Container Load
 										<div class="subtle-text">Shipment does not require full capacity of container. Entire content of container is intended for multiple consignees.</div>
 									</label>
-									
+
 								</div>
 								<div class="card grid-12" style="margin-left:1.5em;" ng-show="containerLoad=='lcl'">
 									<div class="card-content">
@@ -227,13 +227,13 @@
 								</div>
 								<div class="grid-9">
 									<h6>20' Standard</h6>
-									<span class=" small-text">Captioned units(MGW 30,480 KG) can be coordinated from EMCU 3204073 and EISU 3568118.
+									<span class="hide small-text">Captioned units(MGW 30,480 KG) can be coordinated from EMCU 3204073 and EISU 3568118.
 Used for all kinds of general cargo.</span>
 									<div class="grid-12 mts" ng-show="standard20==true">
 										<div class="grid-12 input-group well mbl">
 											<label>How many do you need?</label>
 											<input class="small" type="text" ng-model="standard20Num">
-											
+
 										</div>
 										<div class="grid-12 mbl">
 											<div class="grid-6">
@@ -285,7 +285,7 @@ Used for all kinds of general cargo.</span>
 												</table>
 											</div>
 										</div>
-										
+
 										<div class="grid-12 mbl">
 											<div class="grid-6">
 												<h4 class="base-text">Weight</h4>
@@ -328,20 +328,20 @@ Used for all kinds of general cargo.</span>
 														<tr>
 															<th>Width</th>
 															<th>Height</th>
-															
+
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
 															<td>7' - 8 1/8"</td>
 															<td>7' - 5 3/4"</td>
-															
+
 														</tr>
 														<tr>
 															<td>2.343 m</td>
 															<td>2.280 m</td>
 														</tr>
-													
+
 														</tr>
 													</tbody>
 												</table>
@@ -355,21 +355,21 @@ Used for all kinds of general cargo.</span>
 														<tr>
 															<th>Cu. M</th>
 															<th>Cu. Ft</th>
-															
+
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
 															<td>33.1</td>
 															<td>1,169</td>
-															
+
 														</tr>
-														
+
 													</tbody>
 												</table>
 											</div>
 										</div>
-										
+
 									</div>
 								</div>
 							</div>
@@ -380,7 +380,7 @@ Used for all kinds of general cargo.</span>
 								</div>
 								<div class="grid-9">
 									<h6>40' Standard</h6>
-									<p class="nm small-text">Used for all kinds of general cargo.</p>
+									<p class="nm hide small-text">Used for all kinds of general cargo.</p>
 									<div class="grid-12" ng-show="standard40==true">
 										<div class="grid-12 well input-group" ng-show="standard40==true">
 											<label>How many do you need?</label>
@@ -437,7 +437,7 @@ Used for all kinds of general cargo.</span>
 												</table>
 											</div>
 										</div>
-										
+
 										<div class="grid-12 mbl">
 											<div class="grid-6">
 												<h4 class="base-text">Weight</h4>
@@ -455,13 +455,13 @@ Used for all kinds of general cargo.</span>
 															<td>8,820 lb</td>
 															<td>58,380 lb</td>
 														</tr>
-														
+
 														<tr>
 															<td>30,480 kg</td>
 															<td>4,000 kg</td>
 															<td>26,480 kg</td>
 														</tr>
-														
+
 													</tbody>
 												</table>
 											</div>
@@ -472,20 +472,20 @@ Used for all kinds of general cargo.</span>
 														<tr>
 															<th>Width</th>
 															<th>Height</th>
-															
+
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
 															<td>7' - 8 1/8"</td>
 															<td>7' - 5 3/4"</td>
-															
+
 														</tr>
 														<tr>
 															<td>2.343 m</td>
 															<td>2.280 m</td>
 														</tr>
-													
+
 														</tr>
 													</tbody>
 												</table>
@@ -499,16 +499,16 @@ Used for all kinds of general cargo.</span>
 														<tr>
 															<th>Cu. M</th>
 															<th>Cu. Ft</th>
-															
+
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
 															<td>67.5</td>
 															<td>2,385</td>
-															
+
 														</tr>
-														
+
 													</tbody>
 												</table>
 											</div>
@@ -524,7 +524,7 @@ Used for all kinds of general cargo.</span>
 									</div>
 									<div class="grid-9">
 										<h6>40' High Cube</h6>
-										<p class="nm small-text">Used for all kinds of general cargo.</p>
+										<p class="nm hide small-text">Used for all kinds of general cargo.</p>
 										<div class="grid-12" ng-show="highcube40==true">
 											<div class="grid-12 well mbl input-group">
 												<label>How many do you need?</label>
@@ -581,7 +581,7 @@ Used for all kinds of general cargo.</span>
 													</table>
 												</div>
 											</div>
-											
+
 											<div class="grid-12 mbl">
 												<div class="grid-6">
 													<h4 class="base-text">Weight</h4>
@@ -599,13 +599,13 @@ Used for all kinds of general cargo.</span>
 																<td>8,820 lb</td>
 																<td>58,380 lb</td>
 															</tr>
-															
+
 															<tr>
 																<td>30,480 kg</td>
 																<td>4,000 kg</td>
 																<td>26,480 kg</td>
 															</tr>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -616,20 +616,20 @@ Used for all kinds of general cargo.</span>
 															<tr>
 																<th>Width</th>
 																<th>Height</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td>7' - 8 1/8"</td>
 																<td>7' - 5 3/4"</td>
-																
+
 															</tr>
 															<tr>
 																<td>2.343 m</td>
 																<td>2.280 m</td>
 															</tr>
-														
+
 															</tr>
 														</tbody>
 													</table>
@@ -643,16 +643,16 @@ Used for all kinds of general cargo.</span>
 															<tr>
 																<th>Cu. M</th>
 																<th>Cu. Ft</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td>67.5</td>
 																<td>2,385</td>
-																
+
 															</tr>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -669,7 +669,7 @@ Used for all kinds of general cargo.</span>
 									</div>
 									<div class="grid-9">
 										<h6>45' High Cube</h6>
-										<p class="nm small-text">Used for all kinds of general cargo.</p>
+										<p class="nm hide small-text">Used for all kinds of general cargo.</p>
 										<div class="grid-12" ng-show="highcube45==true">
 											<div class="grid-12 well mbl input-group">
 												<label>How many do you need?</label>
@@ -726,7 +726,7 @@ Used for all kinds of general cargo.</span>
 													</table>
 												</div>
 											</div>
-											
+
 											<div class="grid-12 mbl">
 												<div class="grid-6">
 													<h4 class="base-text">Weight</h4>
@@ -744,13 +744,13 @@ Used for all kinds of general cargo.</span>
 																<td>10,580 lb</td>
 																<td>56,620 lb</td>
 															</tr>
-															
+
 															<tr>
 																<td>30,480 kg</td>
 																<td>4,800 kg</td>
 																<td>25,680 kg</td>
 															</tr>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -761,20 +761,20 @@ Used for all kinds of general cargo.</span>
 															<tr>
 																<th>Width</th>
 																<th>Height</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td>7' - 8 1/8"</td>
 																<td>8' - 5 3/4"</td>
-																
+
 															</tr>
 															<tr>
 																<td>2.343 m</td>
 																<td>2.585 m</td>
 															</tr>
-														
+
 															</tr>
 														</tbody>
 													</table>
@@ -788,16 +788,16 @@ Used for all kinds of general cargo.</span>
 															<tr>
 																<th>Cu. M</th>
 																<th>Cu. Ft</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td>86</td>
 																<td>3,040</td>
-																
+
 															</tr>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -814,7 +814,7 @@ Used for all kinds of general cargo.</span>
 									</div>
 									<div class="grid-9">
 										<h6>20' Refrigerated</h6>
-										<p class="nm small-text">Used for all kinds of general cargo that requires climate control.</p>
+										<p class="nm hide small-text">Used for all kinds of general cargo that requires climate control.</p>
 										<div class="grid-12" ng-show="fridge20==true">
 											<div class="grid-12 well mbl input-group">
 												<label>How many do you need?</label>
@@ -871,7 +871,7 @@ Used for all kinds of general cargo.</span>
 													</table>
 												</div>
 											</div>
-											
+
 											<div class="grid-12 mbl">
 												<div class="grid-6">
 													<h4 class="base-text">Weight</h4>
@@ -880,22 +880,22 @@ Used for all kinds of general cargo.</span>
 															<tr>
 																<th>MGW</th>
 																<th>TARE</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td>67,180 lb</td>
 																<td>6,700 lb</td>
-															
+
 															</tr>
-															
+
 															<tr>
 																<td>30,480 kg</td>
 																<td>3,020 kg</td>
-															
+
 															</tr>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -929,16 +929,16 @@ Used for all kinds of general cargo.</span>
 															<tr>
 																<th>Cu. M</th>
 																<th>Cu. Ft</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td>28.8</td>
 																<td>1,016</td>
-																
+
 															</tr>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -979,7 +979,7 @@ Used for all kinds of general cargo.</span>
 									</div>
 									<div class="grid-9">
 										<h6>40' Refrigerated</h6>
-										<p class="nm small-text">Used for all kinds of general cargo that requires climate control.</p>
+										<p class="nm hide small-text">Used for all kinds of general cargo that requires climate control.</p>
 										<div class="grid-12" ng-show="fridge40==true">
 											<div class="grid-12 well mbl input-group">
 												<label>How many do you need?</label>
@@ -1036,7 +1036,7 @@ Used for all kinds of general cargo.</span>
 													</table>
 												</div>
 											</div>
-											
+
 											<div class="grid-12 mbl">
 												<div class="grid-6">
 													<h4 class="base-text">Weight</h4>
@@ -1045,22 +1045,22 @@ Used for all kinds of general cargo.</span>
 															<tr>
 																<th>MGW</th>
 																<th>TARE</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td>67,180 lb</td>
 																<td>6,700 lb</td>
-															
+
 															</tr>
-															
+
 															<tr>
 																<td>30,480 kg</td>
 																<td>3,020 kg</td>
-															
+
 															</tr>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -1094,16 +1094,16 @@ Used for all kinds of general cargo.</span>
 															<tr>
 																<th>Cu. M</th>
 																<th>Cu. Ft</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td>28.8</td>
 																<td>1,016</td>
-																
+
 															</tr>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -1150,7 +1150,7 @@ Used for all kinds of general cargo.</span>
 							<div class="card-header">
 								<h2>Pick a date</h2>
 							</div>
-							
+
 							<div class="card-content datepicker">
 								<datepicker ng-model="dt" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
 							</div>
@@ -1198,7 +1198,7 @@ Used for all kinds of general cargo.</span>
 						<div class="page-title">
 							<h2>
 								Your Best Match
-								
+
 							</h2>
 							<div class="hide filters">
 								<ul>
@@ -1235,13 +1235,13 @@ Used for all kinds of general cargo.</span>
 												<li class="mbs">
 													<span class="small-text">
 														<div class="nm">20' Container {{broker.price | currency}} (2)</div>
-												
+
 													</span>
 												</li>
 												<li>
 													<span class="small-text">
 														<div class="nm">40' Container {{broker.price40 | currency}} (1)</div>
-														
+
 													</span>
 												</li>
 
@@ -1255,10 +1255,10 @@ Used for all kinds of general cargo.</span>
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="grid-12 well hide">
 									<h4 class="mbs">Select your onboarding time</h4>
-								
+
 									<div class="grid-12">
 										<div class="grid-6">
 											<div class="fancy checkbox">
@@ -1401,14 +1401,14 @@ Used for all kinds of general cargo.</span>
 												</li>
 												<li class="mbs">
 													<span class="small-text">
-														<div class="nm">20' Container</div>
+													
 														<ul>
 															<li ng-show="lclWeight>lclVolume">$0.90/lb. ({{lclWeight}} lb. Total)</li>
 															<li ng-show="lclVolume>=lclWeight">$0.87/ft.<span class="expo">3</span> ({{lclVolume}} ft.<span class="expo">3</span> total)</li>
 														</ul>
 													</span>
 												</li>
-												
+
 
 											</ul>
 										</div>
@@ -1420,10 +1420,10 @@ Used for all kinds of general cargo.</span>
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="grid-12 well hide">
 									<h4 class="mbs">Select your onboarding time</h4>
-								
+
 									<div class="grid-12">
 										<div class="grid-6">
 											<div class="fancy checkbox">
@@ -1546,7 +1546,7 @@ Used for all kinds of general cargo.</span>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="lightbox one" ng-class='{"open":orderStage=="confirm"}'>
 			<div class="modal">
 				<div class="card">
@@ -1570,11 +1570,11 @@ Used for all kinds of general cargo.</span>
 							</li>
 							<li>
 								<h3 class="subtle-text small-text">Commodity</h3>
-								
+
 								<div ng-repeat="commodity in commodities"><span>{{commodity.name}}</span></div>
 								<div ng-show="commodities.length==0"><span>-</span></div>
-								
-								
+
+
 							</li>
 							<li>
 								<h3 class="subtle-text small-text">Container Load</h3>
@@ -1586,11 +1586,11 @@ Used for all kinds of general cargo.</span>
 								<h3 class="subtle-text small-text">Container Type</h3>
 								<div ng-show="standard20==true"><span>20' Standard ({{standard20Num}})</span></div>
 								<div ng-show="standard40==true"><span>40' Standard ({{standard40Num}})</span></div>
-								
+
 								<div ng-show="highcube40=='open'"><span>40' High Cube ({{highCubeNum}})</span></div>
 								<span ng-hide="standard20==true || standard40==true || highcube40=='open'">-</span>
 							</li>
-							
+
 							<li>
 								<h3 class="subtle-text small-text">Hazardous Materials</h3>
 								<span ng-show="hasHazMats=='yes'">Yes</span>
