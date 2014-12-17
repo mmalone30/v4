@@ -80,7 +80,22 @@ body {
 			margin-bottom: 5px;
 		}
 	}
-	
+
+}
+
+.pagination {
+	margin-top:2em;
+	font-size:$base-font-size*0.8;
+	a {
+		color:lighten($medium-gray, 10%);
+		&:hover {
+			color:darken($medium-gray,10%);
+		}
+	}
+	span {
+		color:lighten($medium-gray, 10%);
+		margin:0 5px;
+	}
 }
 
 .filters {
@@ -171,7 +186,7 @@ body {
 		position:relative;
 		#{$all-text-inputs} {
 			padding-left:2em;
-			
+
 		}
 		i:before {
 			position:absolute;
@@ -204,7 +219,7 @@ body {
 	text-align: center;
 	padding-bottom: 6em;
 	.container {
-		
+
 	}
 	h2 {
 		margin: 3em auto 1em auto;
@@ -284,7 +299,7 @@ body {
 
 .sidebar {
 	width:280px;
-	
+
 	//background: tint($light-gray, 15%);
 	background:$blue;
 	h2 {
@@ -345,7 +360,7 @@ body {
 
 	@include box-sizing(border-box);
 	h2 {
-		
+
 	}
 	.container {
 		max-width: 800px;
@@ -690,7 +705,7 @@ body {
 					opacity: 0;
 					z-index: -1;
 				}
-				
+
 			}
 			&.hideModal {
 				z-index:-1;
@@ -700,7 +715,7 @@ body {
 				}
 			}
 			&.showModal {
-				
+
 				.card {
 					opacity:1;
 					z-index: 2;
@@ -714,7 +729,7 @@ body {
 			}
 		}
 	}
-	
+
 }
 
 .well {
@@ -859,7 +874,7 @@ body {
 	&.close {
 		opacity:0;
 		z-index: -1;
-	} 
+	}
 }
 
 .modifiers {
@@ -889,7 +904,7 @@ body {
 				font-weight: bold;
 				border:1px solid tint($light-gray, 20%);
 				border-bottom: 0;
-				
+
 				z-index: 2;
 				background:white;
 				border-radius: 3px 3px 0 0;

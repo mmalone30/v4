@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShipSeed</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'>
+  <link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <script src="../js/shipseed.js"></script>
+</head>
+<body ng-controller="ShipSeedCtrl">
+  <div class="">
+    <div class="main-header">
+      <h1>
+        <a href=''>ShipSeed</a>
+      </h1>
+      <div class="search">
+        <a href=''><i class="search-icon"></i> Find Brokers</a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <a href='orders.html'>Orders</a>
+          </li>
+          <li>
+            <a href='shippers.html'>Shippers</a>
+          </li>
+          <li>
+            <a href=''>Messages</a>
+          </li>
+          <li>
+            <a class="active" href=''>Documents</a>
+          </li>
+          <li>
+            <a href=''>Johnny</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="main-content">
+      <div class="container">
+        <div class="grid-12 pagination">
+          <a href='documents.html'>Documents</a>
+          <span>/</span>
+          <a href=''>Order #342123 Documents</a>
+        </div>
+        <div class="grid-12 page-title">
+          <h2>Order #342123 Documents</h2>
+
+
+        </div>
+        <div class="grid-12">
+          <div class="card">
+            <div class="card-content">
+              <table class="zebra">
+                <thead>
+                  <tr>
+                    <th>Document Name</th>
+                    <th>Date Added</th>
+                    <th>Type</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Bill of Lading</td>
+                    <td>12/03/2014</td>
+                    <td>PDF</td>
+                    <td><a href=''>Download</a></td>
+                  </tr>
+                  <tr>
+                    <td>Arrival Notice</td>
+                    <td>12/21/2014</td>
+                    <td>PDF</td>
+                    <td><a href=''>Download</a></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="lightbox one">
+    <div class="modal">
+      <div class="card">
+        <div class="card-header">
+          <h2>Thanks for booking</h2>
+          <a href='' class="close" ng-click="showBroker=false">&times;</a>
+        </div>
+        <div class="card-content">
+          <div class="grid-12 aligncenter mbl">
+            <h6 class="subtle-text">Your logistics provider for this order is</h6>
+            <h3 class="mbs">Pacific Logistics, Inc.</h3>
+            <button class="small button" ng-click="showBroker=false">View Order</button>
+          </div>
+          <div class="grid-12 well broker-info">
+            <div class="grid-12 aligncenter mbl mtl">
+              <div class="grid-6">
+                <i class="user"></i>
+                <p>Patrick Keen</p>
+              </div>
+              <div class="grid-6">
+                <i class="phone"></i>
+                <p>(888) 222-9999</p>
+              </div>
+            </div>
+            <div class="grid-12 aligncenter">
+              <div class="grid-6">
+                <i class="house"></i>
+                <p>123 Main St., Los Angeles, CA, 92606</p>
+              </div>
+              <div class="grid-6">
+                <i class="email"></i>
+                <p>patrick@pacificlogistics.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <h6>Next:</h6>
+          <a href='new-shipper.html'>Enter your shipper info</a> for your logistics service provider.
+        </div>
+        <div class="card-content">
+          <a href='new-shipper.html' class="button primary">Enter Shipper Info</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+  if(window.location.hash == "#new-order") {
+    setTimeout(function() {
+      $(".lightbox").addClass("open");
+    }, 500)
+
+
+  }
+</script>
+</html>
