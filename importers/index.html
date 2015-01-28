@@ -1,16 +1,16 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html ng-app>
-	<head> 
+	<head>
 		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>ShipSeed</title> 
-		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
-		<link href="//get.pictos.cc/fonts/2137/7" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="../css/style.css"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ShipSeed</title>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'>
+		<link href="//get.pictos.cc/fonts/2137/4" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		<script src="../js/shipseed.js"></script>
-	</head> 
-	<body ng-controller="ShipSeedCtrl"> 
+	</head>
+	<body ng-controller="ShipSeedCtrl">
 		<div class="home-wrapper">
 			<div class="main-header">
 				<h1>
@@ -32,15 +32,15 @@
 			</div>
 			<div class="hero">
 				<div class="container">
-					<h2>Find the best logistics service provider to ship your freight.</h2>
+					<h2>Finding the best rate for your commercial freight.</h2>
 					<fieldset>
-						
+
 						<div class="input-group">
 
-							
-							
+
+
 							<span>Search for the best price from</span>
-							
+
 								<div class="typeahead-wrapper">
 									<input type="text" ng-model="originText" placeholder="Port of Origin">
 									<ul class="typeahead-list" ng-hide="!originText || hasOrigin">
@@ -52,7 +52,7 @@
 										</li>
 									</ul>
 								</div>
-							
+
 							<span>to</span>
 							<div class="typeahead-wrapper">
 								<input type="text" ng-model="destinationText" placeholder="Port of Destination">
@@ -65,20 +65,19 @@
 									</li>
 								</ul>
 							</div>
-						
-							
+
+
 							<a href='new-order.html' class="primary small button">Search Routes</a>
 						</div>
-						
-						
+
+
 					</fieldset>
-					
-					
+
+
 				</div>
 
 			</div>
 		</div>
-		
-	</body> 
+
+	</body>
 </html>
-		

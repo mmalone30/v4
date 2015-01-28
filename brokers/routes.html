@@ -1,16 +1,16 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html ng-app>
-	<head> 
+	<head>
 		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>ShipSeed</title> 
-		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ShipSeed</title>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'>
 		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="../css/style.css"> 
+		<link rel="stylesheet" href="../css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		<script src="../js/shipseed.js"></script>
-	</head> 
-	<body ng-controller="ShipSeedCtrl"> 
+	</head>
+	<body ng-controller="ShipSeedCtrl">
 		<div class="">
 			<div class="main-header">
 				<h1>
@@ -19,12 +19,12 @@
 				<div class="search">
 					<div class="grid-12" ng-show="searching=='no'">
 						<a href='find-routes.html' class="info-text">
-							<i class="search-icon"></i>
+							<i class="ss-search"></i>
 							Find Routes
 						</a>
 					</div>
-				
-					
+
+
 				</div>
 				<nav class="main-nav">
 					<ul>
@@ -47,7 +47,7 @@
 				</nav>
 			</div>
 			<div class="main-content">
-				
+
 				<div class="container full">
 					<div class="grid-12 page-title">
 						<h2>Your Routes</h2>
@@ -61,10 +61,10 @@
 								</li>
 							</ul>
 						</div>
-						
+
 						<div class="multi-select-drop righty" ng-class='{"open":viewRouteType}'>
 							<button class="button has-icon" ng-click="viewRouteType = !viewRouteType">
-								<i class="plus"></i>
+								<i class="ss-plus"></i>
 								New Route
 							</button>
 							<ul>
@@ -97,7 +97,7 @@
 													<option>25-50 miles</option>
 													<option>...</option>
 												</select>
-												
+
 											</li>
 										</ul>
 									</div>
@@ -132,8 +132,8 @@
 												<span ng-show="item.price20>0">
 													<a href='' ng-click="item.viewModifiers20 = !item.viewModifiers20">{{item.price20 | currency}}</a>
 												</span>
-												<span ng-show="item.price20==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
-												
+												<span ng-show="item.price20==0"><a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a></span>
+
 												<div class="lightbox one" ng-class='{"open":item.viewModifiers20}'>
 													<div class="modal large">
 														<div class="card">
@@ -222,7 +222,7 @@
 																			<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
 																		</div>
 																	</div>
-																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="ss-plus"></i> Add Commodity Modifier</a>
 																</div>
 																<div class="grid-12 input-group mbl">
 																	<label>Container Amount</label>
@@ -266,8 +266,8 @@
 																		</select>
 																		<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
 																	</div>
-																	
-																	<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+
+																	<a href='' ng-click="containerAmountModifier.push({})"><i class="ss-plus"></i> Add Container Amount Modifier</a>
 																</div>
 																<div class="grid-12 input-group">
 																	<label>Hazardous Materials</label>
@@ -289,7 +289,7 @@
 																				<option>Misc. dangerous substances</option>
 																			</select>
 																		</div>
-																		
+
 																		<div class="mls mrs">
 																			<select>
 																				<option>Increases cost per container</option>
@@ -308,8 +308,8 @@
 																		</select>
 																		<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
 																	</div>
-																	
-																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+
+																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="ss-plus"></i> Add Hazardous Material Modifier</a>
 																</div>
 															</div>
 															<div class="card-content">
@@ -326,7 +326,7 @@
 													<a href='' ng-click="item.viewModifiers40 = !item.viewModifiers40">{{item.price40 | currency}}</a>
 												</span>
 												<span ng-show="item.price40==0">
-													<a href='' class="subtle-text" ng-click="item.viewModifiers40 = !item.viewModifiers40"><i class="plus"></i> Add Price</a>
+													<a href='' class="subtle-text" ng-click="item.viewModifiers40 = !item.viewModifiers40"><i class="ss-plus"></i> Add Price</a>
 												</span>
 												<div class="lightbox one" ng-class='{"open":item.viewModifiers40}'>
 													<div class="modal large">
@@ -416,7 +416,7 @@
 																			<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
 																		</div>
 																	</div>
-																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="ss-plus"></i> Add Commodity Modifier</a>
 																</div>
 																<div class="grid-12 input-group mbl">
 																	<label>Container Amount</label>
@@ -460,8 +460,8 @@
 																		</select>
 																		<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
 																	</div>
-																	
-																	<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+
+																	<a href='' ng-click="containerAmountModifier.push({})"><i class="ss-plus"></i> Add Container Amount Modifier</a>
 																</div>
 																<div class="grid-12 input-group">
 																	<label>Hazardous Materials</label>
@@ -483,7 +483,7 @@
 																				<option>Misc. dangerous substances</option>
 																			</select>
 																		</div>
-																		
+
 																		<div class="mls mrs">
 																			<select>
 																				<option>Increases cost per container</option>
@@ -502,8 +502,8 @@
 																		</select>
 																		<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
 																	</div>
-																	
-																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+
+																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="ss-plus"></i> Add Hazardous Material Modifier</a>
 																</div>
 															</div>
 															<div class="card-content">
@@ -517,55 +517,55 @@
 											</td>
 											<td>
 												<span ng-show="item.price40hc>0"><a href=''>{{item.price40hc | currency}}</a></span>
-												<span ng-show="item.price40hc==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+												<span ng-show="item.price40hc==0"><a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a></span>
 											</td>
 											<td>
 												<span ng-show="item.price45>0"><a href=''>{{item.price45 | currency}}</a></span>
-												<span ng-show="item.price45==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+												<span ng-show="item.price45==0"><a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a></span>
 											</td>
 											<td>
 												<span ng-show="item.price45hc>0"><a href=''>{{item.price45hc | currency}}</a></span>
-												<span ng-show="item.price45hc==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+												<span ng-show="item.price45hc==0"><a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a></span>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a class="subtle-text" href=''><i class="plus"></i> Add Price</a>
+												<a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a>
 											</td>
 										</tr>
 										<tr>
-											<td><a href=''><i class="plus"></i> New Route</a></td>
+											<td><a href=''><i class="ss-plus"></i> New Route</a></td>
 											<td></td>
 											<td></td>
 											<td></td>
@@ -633,8 +633,8 @@
 												<span ng-show="item.price20weight>0 && item.price20volume>0">
 													<a href='' ng-click="item.viewModifiers20 = !item.viewModifiers20">{{item.price20weight | currency}}/lb | {{item.price20volume | currency}}/ft<span class="expo">3</span></a>
 												</span>
-												<span ng-show="item.price20weight==0 && item.price20volume==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
-												
+												<span ng-show="item.price20weight==0 && item.price20volume==0"><a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a></span>
+
 												<div class="lightbox one" ng-class='{"open":item.viewModifiers20}'>
 													<div class="modal large">
 														<div class="card">
@@ -685,7 +685,7 @@
 																			<a href='' ng-click="radiusModifiers.pop({})"><strong>&times;</strong></a>
 																		</div>
 																	</div>
-																	<a href='' ng-click="radiusModifiers.push({})"><i class="plus"></i> Add Radius Modifier</a>
+																	<a href='' ng-click="radiusModifiers.push({})"><i class="ss-plus"></i> Add Radius Modifier</a>
 																</div>
 																<div class="grid-12 hide input-group mbl">
 																	<label>Ship Date Modifiers</label>
@@ -760,7 +760,7 @@
 																			<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
 																		</div>
 																	</div>
-																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="ss-plus"></i> Add Commodity Modifier</a>
 																</div>
 																<div class="grid-12 input-group mbl">
 																	<label>Container Amount</label>
@@ -804,8 +804,8 @@
 																		</select>
 																		<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
 																	</div>
-																	
-																	<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+
+																	<a href='' ng-click="containerAmountModifier.push({})"><i class="ss-plus"></i> Add Container Amount Modifier</a>
 																</div>
 																<div class="grid-12 input-group">
 																	<label>Hazardous Materials</label>
@@ -827,7 +827,7 @@
 																				<option>Misc. dangerous substances</option>
 																			</select>
 																		</div>
-																		
+
 																		<div class="mls mrs">
 																			<select>
 																				<option>Increases cost</option>
@@ -846,8 +846,8 @@
 																		</select>
 																		<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
 																	</div>
-																	
-																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+
+																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="ss-plus"></i> Add Hazardous Material Modifier</a>
 																</div>
 															</div>
 															<div class="card-content">
@@ -864,7 +864,7 @@
 													<a href='' ng-click="item.viewModifiers40 = !item.viewModifiers40">{{item.price40weight | currency}}/lb | {{item.price40volume | currency}}/ft<span class="expo">3</span></a>
 												</span>
 												<span ng-show="item.price40weight==0 && item.price40volume==0">
-													<a href='' class="subtle-text" ng-click="item.viewModifiers40 = !item.viewModifiers40"><i class="plus"></i> Add Price</a>
+													<a href='' class="subtle-text" ng-click="item.viewModifiers40 = !item.viewModifiers40"><i class="ss-plus"></i> Add Price</a>
 												</span>
 												<div class="lightbox one" ng-class='{"open":item.viewModifiers40}'>
 													<div class="modal large">
@@ -916,7 +916,7 @@
 																			<a href='' ng-click="radiusModifiers.pop({})"><strong>&times;</strong></a>
 																		</div>
 																	</div>
-																	<a href='' ng-click="radiusModifiers.push({})"><i class="plus"></i> Add Radius Modifier</a>
+																	<a href='' ng-click="radiusModifiers.push({})"><i class="ss-plus"></i> Add Radius Modifier</a>
 																</div>
 																<div class="grid-12 hide input-group mbl">
 																	<label>Ship Date Modifiers</label>
@@ -991,7 +991,7 @@
 																			<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
 																		</div>
 																	</div>
-																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+																	<a href='' ng-click="commoditiyModifiers.push({})"><i class="ss-plus"></i> Add Commodity Modifier</a>
 																</div>
 																<div class="grid-12 input-group mbl">
 																	<label>Container Amount</label>
@@ -1035,8 +1035,8 @@
 																		</select>
 																		<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
 																	</div>
-																	
-																	<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+
+																	<a href='' ng-click="containerAmountModifier.push({})"><i class="ss-plus"></i> Add Container Amount Modifier</a>
 																</div>
 																<div class="grid-12 input-group">
 																	<label>Hazardous Materials</label>
@@ -1058,7 +1058,7 @@
 																				<option>Misc. dangerous substances</option>
 																			</select>
 																		</div>
-																		
+
 																		<div class="mls mrs">
 																			<select>
 																				<option>Increases cost</option>
@@ -1077,8 +1077,8 @@
 																		</select>
 																		<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
 																	</div>
-																	
-																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+
+																	<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="ss-plus"></i> Add Hazardous Material Modifier</a>
 																</div>
 															</div>
 															<div class="card-content">
@@ -1094,7 +1094,7 @@
 												<span ng-show="item.price40hcWeight>0 && item.price40hcVolume>0">
 													<a href=''>{{item.price40hcWeight | currency}}/lb | {{item.price40hcVolume | currency}}/ft<span class="expo">3</span></a>
 												</span>
-												<span ng-show="item.price40hcWeight==0 && item.price40hcVolume==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+												<span ng-show="item.price40hcWeight==0 && item.price40hcVolume==0"><a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a></span>
 											</td>
 											<td>
 												<span ng-show="item.price45weight>0 && item.price45volume>0">
@@ -1103,7 +1103,7 @@
 
 													</a>
 												</span>
-												<span ng-show="item.price45weight==0 && item.price45volume==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+												<span ng-show="item.price45weight==0 && item.price45volume==0"><a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a></span>
 											</td>
 											<td>
 												<span ng-show="item.price45hWeightc>0 && item.price45hcVolume>0">
@@ -1112,47 +1112,47 @@
 														{{item.price45hcWeight | currency}}/lb | {{item.price45hcVolume | currency}}/ft<span class="expo">3</span>
 													</a>
 												</span>
-												<span ng-show="item.price45hWeightc==0 && item.price45hcVolume==0"><a class="subtle-text" href=''><i class="plus"></i> Add Price</a></span>
+												<span ng-show="item.price45hWeightc==0 && item.price45hcVolume==0"><a class="subtle-text" href=''><i class="ss-plus"></i> Add Price</a></span>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 											<td>
-												<a href='' class="subtle-text"><i class="plus"></i> Add Price</a>
+												<a href='' class="subtle-text"><i class="ss-plus"></i> Add Price</a>
 											</td>
 										</tr>
 										<tr>
-											<td><a href=''><i class="plus"></i> New Route</a></td>
+											<td><a href=''><i class="ss-plus"></i> New Route</a></td>
 											<td></td>
 											<td></td>
 											<td></td>
@@ -1177,9 +1177,9 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
-		
+
 	</body>
 </html>

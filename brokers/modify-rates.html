@@ -1,16 +1,16 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html ng-app>
-	<head> 
+	<head>
 		<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>ShipSeed</title> 
-		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ShipSeed</title>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900' rel='stylesheet' type='text/css'>
 		<link href="//get.pictos.cc/fonts/2618/4" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="../css/style.css"> 
+		<link rel="stylesheet" href="../css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		<script src="../js/shipseed.js"></script>
-	</head> 
-	<body ng-controller="ShipSeedCtrl"> 
+	</head>
+	<body ng-controller="ShipSeedCtrl">
 		<div class="">
 			<div class="main-header">
 				<h1>
@@ -43,8 +43,8 @@
 				<div class="container">
 					<div class="grid-12 page-title">
 						<h2>Rate Modifiers</h2>
-						
-						
+
+
 					</div>
 					<div class="grid-12">
 						<div class="grid-9">
@@ -143,7 +143,7 @@
 														<a href='' ng-click="commoditiyModifiers.pop({})"><strong>&times;</strong></a>
 													</div>
 												</div>
-												<a href='' ng-click="commoditiyModifiers.push({})"><i class="plus"></i> Add Commodity Modifier</a>
+												<a href='' ng-click="commoditiyModifiers.push({})"><i class="ss-plus"></i> Add Commodity Modifier</a>
 											</div>
 											<div class="grid-12 mbl">
 												<h5 class="mbs">Container Amount</h5>
@@ -187,8 +187,8 @@
 													</select>
 													<a href="" class="mll" ng-click="containerAmountModifier.pop({})"><strong>&times;</strong></a>
 												</div>
-												
-												<a href='' ng-click="containerAmountModifier.push({})"><i class="plus"></i> Add Container Amount Modifier</a>
+
+												<a href='' ng-click="containerAmountModifier.push({})"><i class="ss-plus"></i> Add Container Amount Modifier</a>
 											</div>
 											<div class="grid-12 mbl">
 												<h5 class="mbs">Type of Container</h5>
@@ -203,7 +203,7 @@
 															<option>40' Standard</option>
 															<option>40' High Cub</option>
 															<option>...</option>
-															
+
 														</select>
 													</div>
 													<div class="mls mrs">
@@ -227,8 +227,8 @@
 													</select>
 													<a href="" class="mls" ng-click="containerTypeModifier.pop({})"><strong>&times;</strong></a>
 												</div>
-												
-												<a href='' ng-click="containerTypeModifier.push({})"><i class="plus"></i> Add Container Type Modifier</a>
+
+												<a href='' ng-click="containerTypeModifier.push({})"><i class="ss-plus"></i> Add Container Type Modifier</a>
 											</div>
 											<div class="grid-12 mbl">
 												<h5 class="mbs">Hazardous Materials</h5>
@@ -250,7 +250,7 @@
 															<option>Misc. dangerous substances</option>
 														</select>
 													</div>
-													
+
 													<div class="mls mrs">
 														<select>
 															<option>Increases cost per container</option>
@@ -269,8 +269,8 @@
 													</select>
 													<a href="" class="mls" ng-click="hazardousMaterialModifiers.pop({})"><strong>&times;</strong></a>
 												</div>
-												
-												<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="plus"></i> Add Hazardous Material Modifier</a>
+
+												<a href='' ng-click="hazardousMaterialModifiers.push({})"><i class="ss-plus"></i> Add Hazardous Material Modifier</a>
 											</div>
 											<div class="grid-12">
 												<button class="primary button">Save Changes</button>
@@ -278,7 +278,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 						<div class="grid-3">
@@ -289,9 +289,9 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
-		
+
 	</body>
 </html>
